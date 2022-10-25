@@ -3,7 +3,7 @@ package com.digitalsamurai.asc.controller.ktor
 import com.digitalsamurai.asc.LoggingService
 import com.digitalsamurai.asc.di.DaggerMainComponent
 import com.digitalsamurai.asc.di.MainModule
-import com.digitalsamurai.asc.model.AscModel
+import com.digitalsamurai.asc.model.appupdatemanager.AscModelUpdater
 import com.share.service.controller.ktor.plugins.configureMonitoring
 import com.share.service.controller.ktor.plugins.configureRouting
 import com.share.service.controller.ktor.plugins.configureSerialization
@@ -16,12 +16,13 @@ import javax.inject.Inject
 class KtorServer() : Thread() {
 
     companion object{
-        const val PRIVATE_PORT = 25640
-        const val PUBLIC_PORT = 25641
+        const val PRIVATE_ASC_PORT = 25640
+        const val PUBLIC_ASC_PORT = 25641
+        const val PUBLIC_AUTH_PORT = 25650
     }
-    private var ports = intArrayOf(PRIVATE_PORT, PUBLIC_PORT)
+    private var ports = intArrayOf(PRIVATE_ASC_PORT, PUBLIC_ASC_PORT)
     @Inject
-    lateinit var model: AscModel
+    lateinit var model: AscModelUpdater
 
     @Inject
     lateinit var logger : LoggingService

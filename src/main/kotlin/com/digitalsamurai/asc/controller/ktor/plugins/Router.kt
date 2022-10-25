@@ -1,24 +1,21 @@
 package com.share.service.controller.ktor.plugins
 
 import com.digitalsamurai.asc.LoggingService
-import com.digitalsamurai.asc.Preferences
 import com.digitalsamurai.asc.controller.entity.NetworkAppInfo
 import com.digitalsamurai.asc.controller.entity.ServiceOkStatus
 import com.digitalsamurai.asc.controller.ktor.KtorServer
-import com.digitalsamurai.asc.model.AscModel
+import com.digitalsamurai.asc.model.appupdatemanager.AscModelUpdater
 import io.ktor.application.*
 import io.ktor.http.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import kotlinx.coroutines.delay
-import java.io.File
 
 
-fun Application.configureRouting(model: AscModel, logger : LoggingService) {
+fun Application.configureRouting(model: AscModelUpdater, logger : LoggingService) {
 
         routing {
-            val PUBLIC_PORT = KtorServer.PUBLIC_PORT
-            val PRIVATE_PORT = KtorServer.PRIVATE_PORT
+            val PUBLIC_PORT = KtorServer.PUBLIC_ASC_PORT
+            val PRIVATE_PORT = KtorServer.PRIVATE_ASC_PORT
             var fileDescription  = ""
             var fileName = ""
             //-----------COMMON-----------
@@ -31,7 +28,6 @@ fun Application.configureRouting(model: AscModel, logger : LoggingService) {
             }
 
             get("/getActualVersionInfo"){
-                //todo return [NetworkAppInfo]
                 val data = model.getActualApk()
                 call.respond(NetworkAppInfo(data.version.version,data.version.update,data.version.path,data.patchNote))
             }

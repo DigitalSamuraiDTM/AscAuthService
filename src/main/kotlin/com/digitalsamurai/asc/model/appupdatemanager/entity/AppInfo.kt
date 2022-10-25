@@ -1,4 +1,4 @@
-package com.digitalsamurai.asc.model.entity
+package com.digitalsamurai.asc.model.appupdatemanager.entity
 
 import java.io.File
 

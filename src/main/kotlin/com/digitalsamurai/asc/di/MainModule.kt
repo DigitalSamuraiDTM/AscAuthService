@@ -2,10 +2,9 @@ package com.digitalsamurai.asc.di
 
 import com.digitalsamurai.asc.LoggingService
 import com.digitalsamurai.asc.Preferences
-import com.digitalsamurai.asc.controller.ktor.KtorServer
-import com.digitalsamurai.asc.model.AscModel
-import com.digitalsamurai.asc.model.AscModelImpl
-import com.digitalsamurai.asc.model.fileprovider.FileProvider
+import com.digitalsamurai.asc.model.appupdatemanager.AscModelUpdater
+import com.digitalsamurai.asc.model.appupdatemanager.AscModelUpdaterImpl
+import com.digitalsamurai.asc.model.appupdatemanager.fileprovider.FileProvider
 import dagger.Provides
 import javax.inject.Singleton
 
@@ -33,13 +32,13 @@ class MainModule {
 
     @Provides
     @Singleton
-    fun provideModel(fileProvider: FileProvider) : AscModel{
-        return AscModelImpl(fileProvider)
+    fun provideModel(fileProvider: FileProvider) : AscModelUpdater {
+        return AscModelUpdaterImpl(fileProvider)
     }
 
     @Provides
     @Singleton
-    fun provideFileProvider() : FileProvider{
+    fun provideFileProvider() : FileProvider {
         return FileProvider(apkStorage,jsonInfoActualVersion,"asc.apk")
     }
     @Provides

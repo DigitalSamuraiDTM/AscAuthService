@@ -1,4 +1,4 @@
-import com.digitalsamurai.asc.model.fileprovider.FileProvider
+import com.digitalsamurai.asc.model.appupdatemanager.fileprovider.FileProvider
 import org.junit.jupiter.api.Test
 
 class FileProviderTest {

@@ -1,7 +1,7 @@
-package com.digitalsamurai.asc.model.fileprovider
+package com.digitalsamurai.asc.model.appupdatemanager.fileprovider
 
-import com.digitalsamurai.asc.model.entity.AppVersion
-import com.digitalsamurai.asc.model.entity.AppInfo
+import com.digitalsamurai.asc.model.appupdatemanager.entity.AppVersion
+import com.digitalsamurai.asc.model.appupdatemanager.entity.AppInfo
 import com.google.gson.Gson
 import com.google.gson.stream.JsonReader
 import java.io.File
@@ -28,7 +28,7 @@ class FileProvider(
         }
     }
 
-    fun getActualApp() : AppInfo{
+    fun getActualApp() : AppInfo {
         val version = getActualVersion()
         return AppInfo(File(fileStorage+File.separator+version.toString()+File.separator+fileName),fileName, version,getActualPatchNote())
 
@@ -41,8 +41,8 @@ class FileProvider(
         val filePatchNote = File(fileStorage+File.separator+version.toString()+File.separator+patchNoteFileName)
         return filePatchNote.readText()
     }
-    fun getActualVersion() : AppVersion{
-        val version = gson.fromJson<AppVersion>(JsonReader(FileReader(jsonActualVersion)),AppVersion::class.java)
+    fun getActualVersion() : AppVersion {
+        val version = gson.fromJson<AppVersion>(JsonReader(FileReader(jsonActualVersion)), AppVersion::class.java)
         return version
     }
 }
