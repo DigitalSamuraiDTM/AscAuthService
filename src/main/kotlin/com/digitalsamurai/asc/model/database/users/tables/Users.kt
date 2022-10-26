@@ -15,7 +15,7 @@ object Users : Table<User>("users"){
     val canUseDNS = boolean("can_use_deep-name-service").bindTo { it.canUseDNS }
     val canUseTS = boolean("can_use_token-service").bindTo { it.canUseTS }
     val isUseTgAlarm = boolean("is_sub_tg_alarm").bindTo { it.isUseTgAlarm }
-    val isUseServiceAlarm = boolean("is_sub_service_alarm").bindTo { it.isUseServiceAlarm }
+    val canSeeAppsInfo = boolean("is_sub_service_alarm").bindTo { it.isUseServiceAlarm }
     val job = enum<JobLevel>("job").bindTo { it.job }
     val team = varchar("team").bindTo { it.team }
     val inviter = varchar("inviter").bindTo { it.inviter }
@@ -25,8 +25,8 @@ interface User : Entity<User> {
     companion object : Entity.Factory<User>()
     val username : String
     val password : String
-    val tgId : String
-    val tgTag :String
+    val tgId : String?
+    val tgTag :String?
     val canUsePAGS :Boolean
     val canUseDNS :Boolean
     val canUsePACS :Boolean
