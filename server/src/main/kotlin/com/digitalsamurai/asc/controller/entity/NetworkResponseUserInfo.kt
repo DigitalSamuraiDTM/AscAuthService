@@ -1,0 +1,41 @@
+package com.digitalsamurai.asc.controller.entity
+
+import com.digitalsamurai.asc.model.services.database.users.entity.JobLevel
+import com.google.gson.annotations.SerializedName
+
+data class NetworkResponseUserInfo(
+
+    @SerializedName("username")
+    val username : String,
+
+    @SerializedName("tg_tag")
+    val tgTag : String,
+
+    @SerializedName("tg_id")
+    val tgId : String,
+
+    @SerializedName("team")
+    val team : String,
+
+    @SerializedName("job")
+    val jobLevel: JobLevel,
+
+    @SerializedName("inviter")
+    val inviter : String,
+
+    @SerializedName("selenium_access")
+    val seleniumAccess : Boolean,
+
+    @SerializedName("carbonium_access")
+    val carboniumAccess : Boolean,
+
+    @SerializedName("osmium_access")
+    val osmiumAccess : Boolean,
+
+    @SerializedName("bohrium_access")
+    val bohrmiumAccess : Boolean,
+
+    @SerializedName("krypton_access")
+    val kryptonAccess : Boolean
+
+)
