@@ -1,6 +1,5 @@
 
-rootProject.name = 'ktorTestApi'
+rootProject.name = 'AscAuthService'
 include 'mech'
 include 'server'
-include 'mech'
 

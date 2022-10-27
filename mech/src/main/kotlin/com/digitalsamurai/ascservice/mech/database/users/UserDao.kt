@@ -30,6 +30,8 @@ interface UserDao {
 
     suspend fun isUsernameExist(username : String) : Boolean
 
+    suspend fun bindTelegramToAccount(username : String, tgId : String, tgTag : String?):Boolean
+
     suspend fun insertUser(username : String,
                            password : String,
                            tgId : String?,

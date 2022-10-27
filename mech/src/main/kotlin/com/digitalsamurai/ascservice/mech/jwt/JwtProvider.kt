@@ -1,5 +1,6 @@
 package com.digitalsamurai.ascservice.mech.jwt
 
+import com.digitalsamurai.ascservice.mech.database.users.entity.JobLevel
 import com.digitalsamurai.ascservice.mech.database.users.tables.User
 import com.digitalsamurai.ascservice.mech.jwt.entity.JwtHeader
 import com.digitalsamurai.ascservice.mech.jwt.entity.JwtPayload
@@ -100,6 +101,10 @@ class JwtProvider(
 
             return  decodePayloadData
         }
+    }
+
+    fun checkJwtJobAccess(jwt : String,jobLevelList : List<JobLevel>) : Boolean{
+        return true
     }
 
     private fun createJwtDeathTime() : String{

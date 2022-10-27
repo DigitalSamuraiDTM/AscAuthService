@@ -1,6 +1,8 @@
 package com.digitalsamurai.asc.di
 
 import com.digitalsamurai.ascservice.mech.database.DatabaseImpl
+import com.digitalsamurai.ascservice.mech.database.rt.RtDao
+import com.digitalsamurai.ascservice.mech.database.rt.RtDaoImpl
 import com.digitalsamurai.ascservice.mech.database.teams.TeamDao
 import com.digitalsamurai.ascservice.mech.database.teams.TeamDaoImpl
 import com.digitalsamurai.ascservice.mech.database.users.UserDao
@@ -41,12 +43,19 @@ class DatabaseModule(val databaseUrl : String, val databaseLogin : String, val d
     fun provideTeamsDao(database: Database) : TeamDao {
         return TeamDaoImpl(database)
     }
+    @Provides
+    @Singleton
+    fun provideRtDao(database: Database) : RtDao {
+        //todo add sha256 encryptor
+        return RtDaoImpl(database)
+    }
 
     @Provides
     @Singleton
     fun provideDatabaseImpl(userDao : UserDao,
-                            teamDao: TeamDao
+                            teamDao: TeamDao,
+                            rtDao : RtDao
     ) : DatabaseImpl {
-        return DatabaseImpl(userDao, teamDao)
+        return DatabaseImpl(userDao, teamDao,rtDao)
     }
 }

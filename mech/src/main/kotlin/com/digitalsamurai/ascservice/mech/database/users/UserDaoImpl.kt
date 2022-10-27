@@ -12,7 +12,7 @@ import org.ktorm.dsl.*
 import org.ktorm.entity.sequenceOf
 import org.ktorm.schema.Column
 
-class UserDaoImpl(private val database : Database,private val passwordEncryptor: PasswordEncryptor) : UserDao {
+internal class UserDaoImpl(private val database : Database,private val passwordEncryptor: PasswordEncryptor) : UserDao {
 
     private val Database.user get() = this.sequenceOf(Users)
 
@@ -164,6 +164,16 @@ class UserDaoImpl(private val database : Database,private val passwordEncryptor:
             Users.username eq username
         }.rowSet.size() == 1
 
+    }
+
+    override suspend fun bindTelegramToAccount(username: String, tgId: String, tgTag: String?): Boolean {
+        return database.update(Users){
+            set(Users.tgId,tgId)
+            set(Users.tgTag, tgTag)
+            where {
+                Users.username eq username
+            }
+        } ==1
     }
 
     override suspend fun insertUser(
