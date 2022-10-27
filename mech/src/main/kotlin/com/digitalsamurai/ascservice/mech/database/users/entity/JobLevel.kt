@@ -16,5 +16,17 @@ enum class JobLevel {
     TEAMLEAD,
 
     @SerializedName("ADMIN")
-    ADMIN
+    ADMIN;
+    companion object{
+        fun fromString(string : String?) : JobLevel?{
+            return when(string){
+                "AFFILIATE"->{AFFILIATE}
+                "WEB"->{WEB}
+                "ARBITR_1W"->{ARBITR_1W}
+                "TEAMLEAD"->{TEAMLEAD}
+                "ADMIN"->{ADMIN}
+                else->{null}
+            }
+        }
+    }
 }

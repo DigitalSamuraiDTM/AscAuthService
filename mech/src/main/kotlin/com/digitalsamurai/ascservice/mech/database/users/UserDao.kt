@@ -8,9 +8,16 @@ import com.digitalsamurai.ascservice.mech.database.users.tables.User
 
 interface UserDao {
 
+    suspend fun getUser(username :String) : User?
+
+    suspend fun getUsersByTeam(team : String) : List<User>
+
     suspend fun getAuthUsers(jobLevel: JobLevel?) : List<User>
 
     suspend fun pageAuthUsers(searchText : String?, current : Int, pageSize : Int, sortingField : UserSortingField, sortingType : SortingType) : List<User>
+
+
+    //-------------UPDATING DATA ---------------------------
 
     suspend fun updateUsername(oldUsername : String,newUsername : String) : Boolean
 
@@ -32,6 +39,8 @@ interface UserDao {
 
     suspend fun bindTelegramToAccount(username : String, tgId : String, tgTag : String?):Boolean
 
+    //------------------ CREATING NEW USER -----------------------
+
     suspend fun insertUser(username : String,
                            password : String,
                            tgId : String?,
@@ -44,5 +53,7 @@ interface UserDao {
                            jobLevel: JobLevel,
                            team : String,
                            inviter :String) : Boolean
-    suspend fun getUsersByTeam(team : String) : List<User>
+
+
+
 }

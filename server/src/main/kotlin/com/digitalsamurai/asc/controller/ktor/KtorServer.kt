@@ -3,7 +3,6 @@ package com.digitalsamurai.asc.controller.ktor
 import com.digitalsamurai.asc.LoggingService
 import com.digitalsamurai.asc.Preferences
 import com.digitalsamurai.asc.controller.ktor.plugins.configureAdminPanelRouting
-import com.digitalsamurai.asc.di.MainModule
 import com.digitalsamurai.asc.model.appupdatemanager.AscModelUpdater
 import com.digitalsamurai.asc.model.usermanager.UserModel
 import com.digitalsamurai.ascservice.mech.database.users.entity.JobLevel
@@ -30,8 +29,8 @@ class KtorServer() : Thread() {
 
 
         suspend inline fun ApplicationCall.checkJwtValid(
-            vararg access: JobLevel, port : Int, jwtProvider : JwtProvider,
-            workFunction: (ApplicationCall) -> Any
+            vararg access: JobLevel, port: Int, jwtProvider: JwtProvider,
+            workFunction: (ApplicationCall) -> Unit
         ) {
             if (this.request.port() != port) {
                 this.respond(HttpStatusCode.ServiceUnavailable)

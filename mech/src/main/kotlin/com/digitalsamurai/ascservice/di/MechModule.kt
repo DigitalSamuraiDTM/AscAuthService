@@ -5,10 +5,11 @@ import com.digitalsamurai.ascservice.mech.jwt.JwtProvider
 import com.digitalsamurai.ascservice.mech.rt.RtProvider
 import com.google.gson.Gson
 import dagger.Provides
+import dagger.Module
 import java.io.File
 import javax.inject.Singleton
 
-@dagger.Module(includes = [DatabaseModule::class])
+@Module(includes = [DatabaseModule::class])
 class MechModule(
     private val jwtConfRoute : String,
     private val rtConfRoute : String,

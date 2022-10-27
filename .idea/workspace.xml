@@ -4,31 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c3b19108-31a1-4e75-a9db-e775715138f9" name="Changes" comment="modules, Jwt, Database">
-      <change afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/di/MechModule.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/rt/RtDao.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/rt/RtDaoImpl.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/rt/entity/RtTokenStatus.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/rt/tables/RtTokens.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/rt/RtProvider.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/rt/entity/RtTokenInfo.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt" afterDir="false" />
+    <list default="true" id="c3b19108-31a1-4e75-a9db-e775715138f9" name="Changes" comment="Database, jwt rt providers, di">
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/entity/BaseDataUser.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/entity/UserInfo.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/mech/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/di/DatabaseModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/di/DatabaseModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/DatabaseImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/DatabaseImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/teams/TeamDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/teams/TeamDao.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/teams/TeamDaoImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/teams/TeamDaoImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/di/MechModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/di/MechModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/entity/SortingType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/entity/SortingType.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/UserDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/UserDao.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/UserDaoImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/UserDaoImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/jwt/JwtProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/jwt/JwtProvider.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/entity/JobLevel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/entity/JobLevel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/entity/UserSortingField.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/entity/UserSortingField.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/server/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/entity/NetworkResponseUserInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/entity/NetworkResponseUserInfo.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/KtorServer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/KtorServer.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/di/MainComponent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/di/MainComponent.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/di/MainModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/di/MainModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,9 +37,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
-        <option value="Kotlin Data Class" />
         <option value="Kotlin Interface" />
         <option value="Kotlin Enum" />
+        <option value="Kotlin Data Class" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -62,14 +55,14 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;14&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/work/IDEA_project/ApkGenerator&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "jdk.selected.JAVA_MODULE": "14",
+    "last_opened_file_path": "D:/work/IDEA_project/ktorTestApi"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\work\IDEA_project\ktorTestApi\src\main\kotlin\com\digitalsamurai\asc\model\database" />
@@ -91,7 +84,7 @@
       <recent name="com.digitalsamurai.asc.controller.ktor" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.Jwt">
+  <component name="RunManager" selected="Kotlin.MainKt">
     <configuration name="DatabaseTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -161,29 +154,6 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="FileProviderTest.test" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-            <option value="--tests" />
-            <option value="&quot;FileProviderTest.test&quot;" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="Encryptor test" type="JUnit" factoryName="JUnit">
       <module name="ktorTestApi.mech.test" />
       <option name="PACKAGE_NAME" value="" />
@@ -216,8 +186,8 @@
     </configuration>
     <configuration name="MainKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.digitalsamurai.asc.MainKt" />
-      <module name="ktorTestApi.main" />
-      <option name="PROGRAM_PARAMETERS" value="-apk_storage D:\\bomba -db_url https://pornhub.com -db_login user -db_pass 123456 -auth https://xvideos.com -json_actual D:\\bomba\\actual.json" />
+      <module name="AscAuthService.server.main" />
+      <option name="PROGRAM_PARAMETERS" value="-apk_storage D:\bomba -db_url jdbc:mysql://127.0.0.1:3306/ascdb -db_login root -db_pass 123456 -json_actual D:\bomba\actual.json -jwt_token cjX8BNJMoUKLZBo1VsZl29tPhB+c46eBRoml5z7rCU0= -jwt_config C:\Users\Андрей\Desktop\conf.txt -rt_config C:\Users\Андрей\Desktop\conf.txt -rt_token cjX8BNJMoUKLZBo1VsZl29tPhB+c46eBRoml5z7rCU0=" />
       <shortenClasspath name="NONE" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -227,7 +197,6 @@
       <item itemvalue="Gradle.DatabaseTest.testPageUsers" />
       <item itemvalue="Gradle.DatabaseTest" />
       <item itemvalue="Gradle.DatabaseTest.testUser" />
-      <item itemvalue="Gradle.FileProviderTest.test" />
       <item itemvalue="JUnit.Encryptor test" />
       <item itemvalue="JUnit.database" />
       <item itemvalue="JUnit.Jwt" />
@@ -235,11 +204,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Kotlin.MainKt" />
         <item itemvalue="Gradle.DatabaseTest.testPageUsers" />
         <item itemvalue="Gradle.DatabaseTest.testUser" />
         <item itemvalue="Gradle.DatabaseTest" />
-        <item itemvalue="Kotlin.MainKt" />
-        <item itemvalue="Gradle.FileProviderTest.test" />
       </list>
     </recent_temporary>
   </component>
@@ -280,7 +248,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666826327481</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Database, jwt rt providers, di">
+      <created>1666891027978</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1666891027978</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -299,7 +274,8 @@
     <MESSAGE value="Work with database" />
     <MESSAGE value="Users database" />
     <MESSAGE value="modules, Jwt, Database" />
-    <option name="LAST_COMMIT_MESSAGE" value="modules, Jwt, Database" />
+    <MESSAGE value="Database, jwt rt providers, di" />
+    <option name="LAST_COMMIT_MESSAGE" value="Database, jwt rt providers, di" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -313,6 +289,16 @@
           <url>file://$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/jwt/JwtProvider.kt</url>
           <line>77</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/di/DatabaseModule.kt</url>
+          <line>32</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/di/DatabaseModule.kt</url>
+          <line>31</line>
+          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

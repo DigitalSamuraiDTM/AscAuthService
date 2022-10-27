@@ -5,27 +5,29 @@ import com.digitalsamurai.asc.Preferences
 import com.digitalsamurai.asc.model.appupdatemanager.AscModelUpdater
 import com.digitalsamurai.asc.model.appupdatemanager.AscModelUpdaterImpl
 import com.digitalsamurai.asc.model.appupdatemanager.fileprovider.FileProvider
+import com.digitalsamurai.asc.model.usermanager.UserModel
+import com.digitalsamurai.ascservice.mech.database.teams.TeamDao
+import com.digitalsamurai.ascservice.mech.database.users.UserDao
 import dagger.Provides
 import javax.inject.Singleton
 
 @dagger.Module
-class MainModule {
-
-
-
-
-    val authService :String
-        get() = Preferences.authService
-
-    val jsonInfoActualVersion :String
-    get() = Preferences.jsonInfoActualVersion
-
+class MainModule(private val jsonInfoActualVersion : String,
+                 private val apkStorage : String) {
 
 
     @Provides
     @Singleton
     fun provideModel(fileProvider: FileProvider) : AscModelUpdater {
         return AscModelUpdaterImpl(fileProvider)
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideUserModel(teamDao : TeamDao,
+                         userDao : UserDao) : UserModel {
+        return UserModel(teamDao,userDao)
     }
 
     @Provides

@@ -14,7 +14,9 @@ import org.ktorm.database.Database
 import javax.inject.Singleton
 
 @Module
-class DatabaseModule(val databaseUrl : String, val databaseLogin : String, val databasePass : String) {
+class DatabaseModule(val databaseUrl : String,
+                     val databaseLogin : String,
+                     val databasePass : String) {
 
 
 
@@ -27,7 +29,8 @@ class DatabaseModule(val databaseUrl : String, val databaseLogin : String, val d
     @Provides
     @Singleton
     fun provideDatabase() : Database{
-        return Database.connect(databaseUrl,databaseLogin,databasePass)
+        val a = Database.connect(url = databaseUrl,user = databaseLogin, password = databasePass)
+        return a
     }
 
     @Provides

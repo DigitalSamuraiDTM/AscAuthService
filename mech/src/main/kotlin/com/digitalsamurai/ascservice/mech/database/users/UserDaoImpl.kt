@@ -17,6 +17,15 @@ internal class UserDaoImpl(private val database : Database,private val passwordE
     private val Database.user get() = this.sequenceOf(Users)
 
 
+    override suspend fun getUser(username: String): User? {
+        return try {
+            database.from(Users).select().where {
+                Users.username eq username
+            }.map { database.user.entityExtractor(it) }[0]
+        } catch (e : java.lang.Exception) {
+            return null
+        }
+    }
 
     override suspend fun getAuthUsers(jobLevel: JobLevel?): List<User> {
         return if (jobLevel==null){
@@ -136,9 +145,13 @@ internal class UserDaoImpl(private val database : Database,private val passwordE
     }
 
     override suspend fun deleteUser(username: String): Boolean {
-        return database.delete(Users){
-            Users.username eq username
-        } ==1
+        return try {
+            database.delete(Users) {
+                Users.username eq username
+            } == 1
+        } catch (e : java.lang.Exception){
+            return false
+        }
     }
 
     private inline fun Query.smartOrdering(column : UserSortingField, type : SortingType) : Query{
