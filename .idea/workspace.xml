@@ -5,23 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3b19108-31a1-4e75-a9db-e775715138f9" name="Changes" comment="Database, jwt rt providers, di">
-      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/entity/BaseDataUser.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/entity/UserInfo.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/di/DatabaseModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/di/DatabaseModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/di/MechModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/di/MechModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/entity/SortingType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/entity/SortingType.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/UserDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/UserDao.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/UserDaoImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/UserDaoImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/entity/JobLevel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/entity/JobLevel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/entity/UserSortingField.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/entity/UserSortingField.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mech/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/mech/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/server/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/entity/NetworkResponseUserInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/entity/NetworkResponseUserInfo.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/KtorServer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/KtorServer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/di/MainModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/di/MainModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +35,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -55,14 +51,12 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "jdk.selected.JAVA_MODULE": "14",
-    "last_opened_file_path": "D:/work/IDEA_project/ktorTestApi"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ApkGenerator" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\work\IDEA_project\ktorTestApi\src\main\kotlin\com\digitalsamurai\asc\model\database" />
