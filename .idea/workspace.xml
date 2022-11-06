@@ -44,6 +44,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -151,7 +159,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="TestRsaAuth" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="DatabaseTest.testUser" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -162,9 +170,9 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":mech:test" />
+            <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;com.digitalsamurai.ascservice.test.TestRsaAuth&quot;" />
+            <option value="&quot;DatabaseTest.testUser&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -230,6 +238,9 @@
         <item itemvalue="Gradle.TestEncryptors.testAes" />
         <item itemvalue="Gradle.TestRsaAuth" />
         <item itemvalue="Kotlin.MainKt" />
+        <item itemvalue="Gradle.DatabaseTest.testPageUsers" />
+        <item itemvalue="Gradle.DatabaseTest.testUser" />
+        <item itemvalue="Gradle.DatabaseTest" />
       </list>
     </recent_temporary>
   </component>

@@ -1,6 +1,7 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.kotlin.jvm' version '1.6.20'
+    id 'java-library'
+    id 'org.jetbrains.kotlin.jvm' version '1.7.20'
 
 }
 
@@ -16,6 +17,9 @@ repositories {
 
 dependencies {
 
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.7.20'
+
+
     //COROUTINES
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
@@ -26,11 +30,11 @@ dependencies {
     //KTORM
     implementation "org.ktorm:ktorm-core:3.5.0"
     implementation 'org.ktorm:ktorm-support-mysql:3.5.0'
-    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.7.20'
 
     //DAGGER
-    implementation "com.google.dagger:dagger:2.41"
-    kapt "com.google.dagger:dagger-compiler:2.41"
+    implementation "com.google.dagger:dagger:2.43"
+    kapt "com.google.dagger:dagger-compiler:2.43"
 
     //SQLITE JDBC
     implementation group: 'org.xerial', name: 'sqlite-jdbc', version: '3.36.0.3'
