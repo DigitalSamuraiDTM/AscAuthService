@@ -1,6 +1,7 @@
 package com.digitalsamurai.ascservice.mech.encryptors
 
 import java.nio.charset.StandardCharsets
+import java.security.AuthProvider
 import java.security.KeyFactory
 import java.security.KeyPairGenerator
 import java.security.PrivateKey
@@ -11,6 +12,8 @@ import javax.crypto.KeyGenerator
 import javax.crypto.SecretKey
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
+import javax.security.auth.Subject
+import javax.security.auth.callback.CallbackHandler
 
 class AuthEncryptor(private val rsaEncryptor: RsaEncryptor,
                     private val aesEncryptor: AesEncryptor) {
@@ -31,6 +34,11 @@ class AuthEncryptor(private val rsaEncryptor: RsaEncryptor,
         val rsaDecr = rsaEncryptor.decryptData(Base64.getDecoder().decode(data))
         val aesDecr = aesEncryptor.decryptData(rsaDecr)
         return String(aesDecr)
+    }
+
+    fun encryptAes(data : String, key : String) : String{
+        return Base64.getEncoder().encodeToString(aesEncryptor.encryptData(data.toByteArray(),
+            SecretKeySpec(key.toByteArray(StandardCharsets.UTF_8),"AES")))
     }
 
     fun getPublicRSAKey() : String{

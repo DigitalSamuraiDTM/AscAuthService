@@ -27,6 +27,13 @@ internal class UserDaoImpl(private val database : Database,private val passwordE
         }
     }
 
+    override suspend fun getAuthUsers(team: String): List<User> {
+        return database.from(Users).select().where {
+                Users.team eq team
+            }.map { database.user.entityExtractor(it) }
+
+    }
+
     override suspend fun getAuthUsers(jobLevel: JobLevel?): List<User> {
         return if (jobLevel==null){
             database.from(Users).select().map { database.user.entityExtractor(it) }

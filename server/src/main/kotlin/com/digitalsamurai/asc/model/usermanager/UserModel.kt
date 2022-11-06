@@ -1,5 +1,7 @@
 package com.digitalsamurai.asc.model.usermanager
 
+import com.digitalsamurai.asc.controller.entity.NetworkRegistrationUserInfo
+import com.digitalsamurai.asc.controller.entity.NetworkResponseRegistrationUser
 import com.digitalsamurai.asc.model.usermanager.entity.BaseDataUser
 import com.digitalsamurai.asc.model.usermanager.entity.UserInfo
 import com.digitalsamurai.asc.model.usermanager.entity.toUserInfo
@@ -29,6 +31,17 @@ class UserModel(private val teamDao: TeamDao,private val userDao : UserDao) {
                 jobLevel = it.job)
         }
     }
+    suspend fun getAuthUsersList(team: String) : List<BaseDataUser>{
+        return userDao.getAuthUsers(team)
+            .map {
+            BaseDataUser(
+                username = it.username,
+                tgTag = it.tgTag,
+                tgId = it.tgId,
+                team = it.team,
+                jobLevel = it.job)
+        }
+    }
     suspend fun pageData(searchText : String,
                          current : Int,
                          pageSize : Int,
@@ -42,6 +55,12 @@ class UserModel(private val teamDao: TeamDao,private val userDao : UserDao) {
                 team = it.team,
                 jobLevel = it.job)
         }
+    }
+
+    suspend fun registerUser(info : NetworkRegistrationUserInfo) : NetworkResponseRegistrationUser {
+        var result = userDao.insertUser(info.username,info.password,info.tgId,info.tgTag,info.seleniumAccess,info.osmiumAccess
+            ,info.carboniumAccess,info.kryptonAccess,info.bohriumAccess,info.jobLevel,info.team,info.inviter)
+        return NetworkResponseRegistrationUser(result)
     }
 
     suspend fun getUserInfo(username : String) : UserInfo?{

@@ -14,6 +14,8 @@ interface UserDao {
 
     suspend fun getAuthUsers(jobLevel: JobLevel?) : List<User>
 
+    suspend fun getAuthUsers(team: String) : List<User>
+
     suspend fun pageAuthUsers(searchText : String?, current : Int, pageSize : Int, sortingField : UserSortingField, sortingType : SortingType) : List<User>
 
 

@@ -40,6 +40,15 @@ class AesEncryptor(private var key : String?) {
         }
         return SecretKeySpec(keyString.toByteArray(), "AES")
     }
+
+    fun encryptData(data : ByteArray, key : SecretKey) : ByteArray{
+        val cipher = Cipher.getInstance("AES").also {  it.init(Cipher.ENCRYPT_MODE,key)}
+        return cipher.doFinal(data)
+    }
+    fun decryptData(data : ByteArray, key : SecretKey) : ByteArray{
+        val cipher = Cipher.getInstance("AES").also {  it.init(Cipher.DECRYPT_MODE,key)}
+        return cipher.doFinal(data)
+    }
     fun encryptData(data : ByteArray) : ByteArray{
         var result = cipherAesEncryptor.doFinal(data)
         return result

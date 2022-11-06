@@ -9,7 +9,7 @@ import dagger.Module
 import java.io.File
 import javax.inject.Singleton
 
-@Module(includes = [DatabaseModule::class])
+@Module(includes = [DatabaseModule::class, EncryptorsModule::class])
 class MechModule(
     private val jwtConfRoute : String,
     private val rtConfRoute : String,
@@ -32,4 +32,6 @@ class MechModule(
     fun provideRtProvider() : RtProvider{
         return RtProvider(rtEncryptorToken,File(rtConfRoute))
     }
+
+
 }

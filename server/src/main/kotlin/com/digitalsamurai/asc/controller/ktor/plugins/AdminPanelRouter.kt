@@ -53,6 +53,23 @@ fun Application.configureAdminPanelRouting(jwtProvider : JwtProvider,userModel :
         }
 
         /**
+         * Return GENERAL user info by [team] parameter
+         *
+         *
+         */
+
+        get("/getUserByTeam"){
+            call.checkJwtValid(JobLevel.ADMIN,JobLevel.TEAMLEAD, port = PUBLIC_PORT, jwtProvider = jwtProvider){
+                val team = call.request.queryParameters["team"]
+                if (team==null){
+                    call.respond(HttpStatusCode.BadRequest)
+                } else{
+                    call.respond(userModel.getAuthUsersList(team))
+                }
+            }
+        }
+
+        /**
          * Params:
          * @param current : Int - current page pos
          * @param pageSize : Int - next page size

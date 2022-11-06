@@ -6,8 +6,11 @@ import com.digitalsamurai.asc.controller.ktor.plugins.configureAdminPanelRouting
 import com.digitalsamurai.asc.model.appupdatemanager.AscModelUpdater
 import com.digitalsamurai.asc.model.usermanager.UserModel
 import com.digitalsamurai.ascservice.mech.database.users.entity.JobLevel
+import com.digitalsamurai.ascservice.mech.encryptors.AesEncryptor
+import com.digitalsamurai.ascservice.mech.encryptors.AuthEncryptor
 import com.digitalsamurai.ascservice.mech.jwt.JwtProvider
 import com.digitalsamurai.ascservice.mech.jwt.entity.JwtStatus
+import com.google.gson.Gson
 import com.share.service.controller.ktor.plugins.configureMonitoring
 import com.share.service.controller.ktor.plugins.configureRouting
 import com.share.service.controller.ktor.plugins.configureSerialization
@@ -28,11 +31,43 @@ class KtorServer() : Thread() {
         const val PUBLIC_ASC_PORT = 25641
         const val PUBLIC_AUTH_PORT = 25650
 
-        suspend inline fun <T : Any> ApplicationCall.authValid(body : KClass<T>?,
+
+        suspend inline fun <T : Any> ApplicationCall.authValid(port: Int,jwtProvider: JwtProvider?,authEncryptor: AuthEncryptor,gson: Gson,body : KClass<T>?,
         workFunction: (ApplicationCall, requestBody : T?) -> Unit){
-            //TODO SECRET AUTH
+            if (this.request.local.port!=port){
+                this.respond(HttpStatusCode.ServiceUnavailable)
+                return
+            }
+            if (jwtProvider!=null){
+                val jwt = this.request.headers["jwt"]
+                if (jwt==null){
+                    this.respond(HttpStatusCode.Unauthorized)
+                    return
+                } else{
+                    val status = jwtProvider.getTokenStatus(jwt)
+                    if (status!=JwtStatus.ACTIVE){
+                        this.respond(HttpStatusCode.Unauthorized)
+                        return
+                    }
+                }
+            }
+
+            if (body!=null){
+                var data = this.request.queryParameters["data"].toString()
+                try {
+                    data = authEncryptor.decryptData(data)
+                    val obj = gson.fromJson(data,body.javaObjectType)
+                    workFunction(this,obj)
+                    return
+                } catch (e : java.lang.Exception){
+                    this.respond(HttpStatusCode.BadRequest)
+                    return
+                }
 
 
+            }  else{
+                workFunction(this,null)
+            }
         }
 
         suspend inline fun ApplicationCall.checkJwtValid(
@@ -77,6 +112,14 @@ class KtorServer() : Thread() {
 
     @Inject
     lateinit var userModel : UserModel
+
+    @Inject
+    lateinit var gson: Gson
+
+    @Inject
+    lateinit var authEncryptor: AuthEncryptor
+
+
 
     init {
         Preferences.mainComponent.injectKtorServer(this)
