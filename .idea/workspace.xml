@@ -4,24 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c3b19108-31a1-4e75-a9db-e775715138f9" name="Changes" comment="Database, jwt rt providers, di">
-      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/entity/BaseDataUser.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/entity/UserInfo.kt" afterDir="false" />
+    <list default="true" id="c3b19108-31a1-4e75-a9db-e775715138f9" name="Changes" comment="admin panel functionality">
+      <change afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/encryptors/AesEncryptor.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/encryptors/AuthEncryptor.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/encryptors/RsaEncryptor.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mech/src/test/kotlin/com/digitalsamurai/ascservice/test/TestEncryptors.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/di/DatabaseModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/di/DatabaseModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/di/MechModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/di/MechModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/entity/SortingType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/entity/SortingType.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/UserDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/UserDao.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/UserDaoImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/UserDaoImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/entity/JobLevel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/entity/JobLevel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/entity/UserSortingField.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/entity/UserSortingField.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/server/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/entity/NetworkResponseUserInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/entity/NetworkResponseUserInfo.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/KtorServer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/KtorServer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/di/MainModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/di/MainModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AuthRouter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AuthRouter.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +50,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "jdk.selected.JAVA_MODULE": "14",
-    "last_opened_file_path": "D:/work/IDEA_project/ktorTestApi"
+    "last_opened_file_path": "D:/work/IDEA_project/ApkGenerator"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -84,8 +74,8 @@
       <recent name="com.digitalsamurai.asc.controller.ktor" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.MainKt">
-    <configuration name="DatabaseTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+  <component name="RunManager" selected="Gradle.TestEncryptors.testAuth">
+    <configuration name="TestEncryptors.testAes" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -96,9 +86,9 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":test" />
+            <option value=":mech:test" />
             <option value="--tests" />
-            <option value="&quot;DatabaseTest&quot;" />
+            <option value="&quot;com.digitalsamurai.ascservice.test.TestEncryptors.testAes&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -108,7 +98,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="DatabaseTest.testPageUsers" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestEncryptors.testAuth" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -119,9 +109,9 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":test" />
+            <option value=":mech:test" />
             <option value="--tests" />
-            <option value="&quot;DatabaseTest.testPageUsers&quot;" />
+            <option value="&quot;com.digitalsamurai.ascservice.test.TestEncryptors.testAuth&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -131,7 +121,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="DatabaseTest.testUser" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestEncryptors.testRsaWithAes" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -142,9 +132,32 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value=":test" />
+            <option value=":mech:test" />
             <option value="--tests" />
-            <option value="&quot;DatabaseTest.testUser&quot;" />
+            <option value="&quot;com.digitalsamurai.ascservice.test.TestEncryptors.testRsaWithAes&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="TestRsaAuth" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":mech:test" />
+            <option value="--tests" />
+            <option value="&quot;com.digitalsamurai.ascservice.test.TestRsaAuth&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -194,9 +207,10 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Gradle.DatabaseTest.testPageUsers" />
-      <item itemvalue="Gradle.DatabaseTest" />
-      <item itemvalue="Gradle.DatabaseTest.testUser" />
+      <item itemvalue="Gradle.TestEncryptors.testAes" />
+      <item itemvalue="Gradle.TestEncryptors.testAuth" />
+      <item itemvalue="Gradle.TestEncryptors.testRsaWithAes" />
+      <item itemvalue="Gradle.TestRsaAuth" />
       <item itemvalue="JUnit.Encryptor test" />
       <item itemvalue="JUnit.database" />
       <item itemvalue="JUnit.Jwt" />
@@ -204,10 +218,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.TestEncryptors.testAuth" />
+        <item itemvalue="Gradle.TestEncryptors.testRsaWithAes" />
+        <item itemvalue="Gradle.TestEncryptors.testAes" />
+        <item itemvalue="Gradle.TestRsaAuth" />
         <item itemvalue="Kotlin.MainKt" />
-        <item itemvalue="Gradle.DatabaseTest.testPageUsers" />
-        <item itemvalue="Gradle.DatabaseTest.testUser" />
-        <item itemvalue="Gradle.DatabaseTest" />
       </list>
     </recent_temporary>
   </component>
@@ -255,7 +270,14 @@
       <option name="project" value="LOCAL" />
       <updated>1666891027978</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="admin panel functionality">
+      <created>1666904332342</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1666904332342</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -275,30 +297,66 @@
     <MESSAGE value="Users database" />
     <MESSAGE value="modules, Jwt, Database" />
     <MESSAGE value="Database, jwt rt providers, di" />
-    <option name="LAST_COMMIT_MESSAGE" value="Database, jwt rt providers, di" />
+    <MESSAGE value="admin panel functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="admin panel functionality" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/jwt/JwtProvider.kt</url>
-          <line>79</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt</url>
+          <line>106</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/jwt/JwtProvider.kt</url>
-          <line>77</line>
-          <option name="timeStamp" value="2" />
+          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt</url>
+          <line>107</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/di/DatabaseModule.kt</url>
-          <line>32</line>
-          <option name="timeStamp" value="3" />
+          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt</url>
+          <line>109</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/di/DatabaseModule.kt</url>
+          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt</url>
+          <line>108</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mech/src/test/kotlin/com/digitalsamurai/ascservice/test/TestEncryptors.kt</url>
+          <line>25</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/encryptors/AuthEncryptor.kt</url>
           <line>31</line>
-          <option name="timeStamp" value="4" />
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mech/src/test/kotlin/com/digitalsamurai/ascservice/test/TestEncryptors.kt</url>
+          <line>24</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mech/src/test/kotlin/com/digitalsamurai/ascservice/test/TestEncryptors.kt</url>
+          <line>21</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mech/src/test/kotlin/com/digitalsamurai/ascservice/test/TestEncryptors.kt</url>
+          <line>22</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mech/src/test/kotlin/com/digitalsamurai/ascservice/test/TestEncryptors.kt</url>
+          <line>20</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/mech/src/test/kotlin/com/digitalsamurai/ascservice/test/TestEncryptors.kt</url>
+          <line>19</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

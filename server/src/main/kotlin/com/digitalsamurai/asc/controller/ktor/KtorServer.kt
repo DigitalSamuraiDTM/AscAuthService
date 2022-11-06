@@ -19,6 +19,7 @@ import io.ktor.response.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
 import javax.inject.Inject
+import kotlin.reflect.KClass
 
 class KtorServer() : Thread() {
 
@@ -27,6 +28,12 @@ class KtorServer() : Thread() {
         const val PUBLIC_ASC_PORT = 25641
         const val PUBLIC_AUTH_PORT = 25650
 
+        suspend inline fun <T : Any> ApplicationCall.authValid(body : KClass<T>?,
+        workFunction: (ApplicationCall, requestBody : T?) -> Unit){
+            //TODO SECRET AUTH
+
+
+        }
 
         suspend inline fun ApplicationCall.checkJwtValid(
             vararg access: JobLevel, port: Int, jwtProvider: JwtProvider,
@@ -73,6 +80,7 @@ class KtorServer() : Thread() {
 
     init {
         Preferences.mainComponent.injectKtorServer(this)
+
     }
 
     fun runServer(args: Array<String>) {
