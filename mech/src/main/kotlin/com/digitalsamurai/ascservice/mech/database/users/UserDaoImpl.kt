@@ -104,15 +104,15 @@ internal class UserDaoImpl(private val database : Database,private val passwordE
     override suspend fun updateServiceAccess(username: String, service: AscService, access: Boolean): Boolean {
         val column : Column<Boolean> = when (service){
             AscService.SELENIUM -> {
-                Users.canUsePACS}
+                Users.seleniumAccess}
             AscService.CARBONIUM -> {
-                Users.canUseDNS}
+                Users.carboniumAccess}
             AscService.OSMIUM -> {
-                Users.canUsePAGS}
+                Users.osmiumAccess}
             AscService.BOHRIUM -> {
-                Users.canSeeAppsInfo}
+                Users.bohriumAccess}
             AscService.KRYPTON -> {
-                Users.canUseTS}
+                Users.kryptonAccess}
         }
 
         return database.update(Users){
@@ -120,6 +120,24 @@ internal class UserDaoImpl(private val database : Database,private val passwordE
             where {
                 Users.username eq username
             }
+        } == 1
+    }
+
+    override suspend fun updateServiceAccess(
+        username: String,
+        selenium: Boolean,
+        carbonium: Boolean,
+        osmium: Boolean,
+        bohrium: Boolean,
+        krypton: Boolean
+    ): Boolean {
+        return database.update(Users){
+            set(Users.seleniumAccess,selenium)
+            set(Users.carboniumAccess,carbonium)
+            set(Users.osmiumAccess,osmium)
+            set(Users.bohriumAccess,bohrium)
+            set(Users.kryptonAccess,krypton)
+            where { Users.username eq username }
         } == 1
     }
 
@@ -221,11 +239,11 @@ internal class UserDaoImpl(private val database : Database,private val passwordE
                 set(Users.password, pass)
                 set(Users.tgId, tgId)
                 set(Users.tgTag, tgTag)
-                set(Users.canUsePACS, canUseSelenium)
-                set(Users.canUsePAGS, canUseOsmium)
-                set(Users.canUseDNS, canUseCarbonium)
-                set(Users.canUseTS, canUseKrypton)
-                set(Users.canSeeAppsInfo, canUseBohrium)
+                set(Users.seleniumAccess, canUseSelenium)
+                set(Users.osmiumAccess, canUseOsmium)
+                set(Users.carboniumAccess, canUseCarbonium)
+                set(Users.kryptonAccess, canUseKrypton)
+                set(Users.bohriumAccess, canUseBohrium)
                 set(Users.job, jobLevel)
                 set(Users.team, team)
                 set(Users.inviter, inviter)

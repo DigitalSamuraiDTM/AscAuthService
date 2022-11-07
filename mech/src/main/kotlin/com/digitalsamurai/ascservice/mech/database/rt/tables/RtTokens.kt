@@ -15,7 +15,7 @@ object RtTokens : Table<RtToken>("rt_tokens") {
     val userAgent = varchar("user_agent").bindTo { it.userAgent }
     val creatingDate = datetime("creating_date").bindTo { it.creatingDate }
     val status = enum<RtTokenStatus>("status").bindTo { it.tokenStatus }
-    val lastActive = datetime("user").bindTo { it.lastActiveTime }
+    val lastActive = datetime("last_active").bindTo { it.lastActiveTime }
 
 }
 

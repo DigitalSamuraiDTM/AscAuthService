@@ -29,6 +29,8 @@ interface UserDao {
 
     suspend fun updateServiceAccess(username : String, service : AscService, access : Boolean) : Boolean
 
+    suspend fun updateServiceAccess(username : String, selenium : Boolean,carbonium : Boolean, osmium : Boolean, bohrium : Boolean, krypton : Boolean) : Boolean
+
     suspend fun updateJobLevel(username : String, jobLevel : JobLevel) : Boolean
 
     suspend fun updateInviter(username : String, inviter : String) : Boolean

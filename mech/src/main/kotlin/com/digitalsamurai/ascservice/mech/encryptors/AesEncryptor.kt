@@ -25,9 +25,10 @@ class AesEncryptor(private var key : String?) {
         if (key==null){
             keyGenerator.init(128)
             aesKey = generateRandomSecretKey()
-            key = Base64.getEncoder().encodeToString(aesKey.encoded)
+            key = String(aesKey.encoded)
         } else{
             aesKey = SecretKeySpec(key!!.toByteArray(StandardCharsets.UTF_8),"AES")
+            key = String(aesKey.encoded)
         }
         cipherAesEncryptor.init(Cipher.ENCRYPT_MODE,aesKey, IvParameterSpec(ByteArray(16)))
         cipherAesDecryptor.init(Cipher.DECRYPT_MODE,aesKey, IvParameterSpec(ByteArray(16)))

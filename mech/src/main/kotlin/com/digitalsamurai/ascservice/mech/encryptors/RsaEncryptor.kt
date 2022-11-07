@@ -5,6 +5,10 @@ import java.security.KeyFactory
 import java.security.KeyPairGenerator
 import java.security.PrivateKey
 import java.security.PublicKey
+import java.security.spec.PKCS8EncodedKeySpec
+import java.security.spec.RSAPrivateKeySpec
+import java.security.spec.RSAPublicKeySpec
+import java.security.spec.X509EncodedKeySpec
 import java.util.*
 import javax.crypto.Cipher
 import javax.crypto.KeyGenerator
@@ -32,16 +36,16 @@ class RsaEncryptor(private var publicKeyString : String?,
             with(keyPairGenerator.genKeyPair()){
                 publicRSAKey = this.public
                 privateRSAKey = this.private
-                publicKeyString = Base64.getEncoder().encodeToString(publicRSAKey.encoded)
-                privateKeyString = Base64.getEncoder().encodeToString(privateRSAKey.encoded)
             }
         } else{
             //parse keys
             val keyFactory = KeyFactory.getInstance("RSA")
-            publicRSAKey = keyFactory.generatePublic(SecretKeySpec(publicKeyString!!.toByteArray(StandardCharsets.UTF_8),"RSA"))
-            privateRSAKey = keyFactory.generatePrivate(SecretKeySpec(privateKeyString!!.toByteArray(StandardCharsets.UTF_8),"RSA"))
-        }
+            publicRSAKey = keyFactory.generatePublic(X509EncodedKeySpec(Base64.getDecoder().decode(publicKeyString!!.toByteArray(StandardCharsets.UTF_8))))
+            privateRSAKey = keyFactory.generatePrivate(PKCS8EncodedKeySpec(Base64.getDecoder().decode(privateKeyString!!.toByteArray(StandardCharsets.UTF_8))))
 
+        }
+        publicKeyString = String(Base64.getEncoder().encode(publicRSAKey.encoded))
+        privateKeyString = String(Base64.getEncoder().encode(privateRSAKey.encoded))
 
         cipherDecryptor.init(Cipher.DECRYPT_MODE,privateRSAKey)
         cipherEncryptor.init(Cipher.ENCRYPT_MODE,publicRSAKey)

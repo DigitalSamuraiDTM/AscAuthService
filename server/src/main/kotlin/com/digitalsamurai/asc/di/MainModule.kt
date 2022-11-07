@@ -5,9 +5,16 @@ import com.digitalsamurai.asc.Preferences
 import com.digitalsamurai.asc.model.appupdatemanager.AscModelUpdater
 import com.digitalsamurai.asc.model.appupdatemanager.AscModelUpdaterImpl
 import com.digitalsamurai.asc.model.appupdatemanager.fileprovider.FileProvider
+import com.digitalsamurai.asc.model.auth.AuthModel
 import com.digitalsamurai.asc.model.usermanager.UserModel
+import com.digitalsamurai.ascservice.mech.database.rt.RtDao
 import com.digitalsamurai.ascservice.mech.database.teams.TeamDao
 import com.digitalsamurai.ascservice.mech.database.users.UserDao
+import com.digitalsamurai.ascservice.mech.encryptors.AesEncryptor
+import com.digitalsamurai.ascservice.mech.encryptors.AuthEncryptor
+import com.digitalsamurai.ascservice.mech.encryptors.RsaEncryptor
+import com.digitalsamurai.ascservice.mech.jwt.JwtProvider
+import com.digitalsamurai.ascservice.mech.rt.RtProvider
 import dagger.Provides
 import javax.inject.Singleton
 
@@ -40,4 +47,17 @@ class MainModule(private val jsonInfoActualVersion : String,
     fun provideLogger() : LoggingService{
         return LoggingService()
     }
+
+    @Singleton
+    @Provides
+    fun provideAuthModel(rsa : RsaEncryptor,
+                         aes : AesEncryptor,
+                         jwtProvider: JwtProvider,
+                         rtProvider: RtProvider,
+                         rtDao: RtDao,
+                         userDao: UserDao
+    ) : AuthModel {
+        return AuthModel(rsa,aes, jwtProvider , rtProvider , rtDao, userDao)
+    }
+
 }

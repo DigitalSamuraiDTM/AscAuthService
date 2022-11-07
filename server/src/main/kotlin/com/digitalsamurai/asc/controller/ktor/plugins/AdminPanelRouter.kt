@@ -1,6 +1,7 @@
 package com.digitalsamurai.asc.controller.ktor.plugins
 
 import com.digitalsamurai.asc.controller.ktor.KtorServer
+import com.digitalsamurai.asc.controller.ktor.KtorServer.Companion.authValid
 import com.digitalsamurai.asc.controller.ktor.KtorServer.Companion.checkJwtValid
 import com.digitalsamurai.asc.model.usermanager.UserModel
 import com.digitalsamurai.ascservice.mech.database.entity.SortingType
@@ -132,6 +133,89 @@ fun Application.configureAdminPanelRouting(jwtProvider : JwtProvider,userModel :
             }
             call.respond(HttpStatusCode.BadRequest)
         }
+
+
+        /**
+         * Update user data
+         * Need for settings, admin panel and teamlead panel
+         *
+         *
+         * */
+
+
+        put("/updateUserTeam"){
+            call.checkJwtValid(JobLevel.ADMIN,JobLevel.TEAMLEAD,port = PUBLIC_PORT, jwtProvider = jwtProvider){
+                val username = call.request.queryParameters.get("username")
+                val team = call.request.queryParameters.get("team")
+                if (username ==null || team == null){
+                    call.respond(HttpStatusCode.BadRequest)
+                } else{
+                    //todo teamlead can update only his team
+                    val response = userModel.updateUserTeam(username,team)
+                    call.respond(response)
+                }
+            }
+        }
+
+        put("/updateUserUsername"){
+            call.checkJwtValid(port = PUBLIC_PORT, jwtProvider = jwtProvider){
+                val username = call.request.queryParameters.get("username")
+                val newUsername = call.request.queryParameters.get("newUsername")
+                if (username ==null || newUsername == null){
+                    call.respond(HttpStatusCode.BadRequest)
+                } else{
+                    //todo teamlead can update only his team
+                    //todo user can update his name
+                    val response = userModel.updateUserUsername(username,newUsername)
+                    call.respond(response)
+                }
+            }
+        }
+        put("/updateUserInviter"){
+            call.checkJwtValid(JobLevel.ADMIN,JobLevel.TEAMLEAD,port = PUBLIC_PORT, jwtProvider = jwtProvider){
+                val username = call.request.queryParameters.get("username")
+                val inviter = call.request.queryParameters.get("inviter")
+                if (username ==null || inviter == null){
+                    call.respond(HttpStatusCode.BadRequest)
+                } else{
+                    //todo teamlead can update only his team
+                    val response = userModel.updateUserInviter(username,inviter)
+                    call.respond(response)
+                }
+            }
+        }
+        put("/unlinkUserTelegram"){
+            call.checkJwtValid(port = PUBLIC_PORT, jwtProvider = jwtProvider){
+                val username = call.request.queryParameters.get("username")
+                if (username ==null){
+                    call.respond(HttpStatusCode.BadRequest)
+                } else{
+                    //todo teamlead can update only his team
+                    //todo user can unlink his telegram
+                    val response = userModel.unlinkUserTelegram(username)
+                    call.respond(response)
+                }
+            }
+        }
+
+        put("/updateServiceAccess"){
+            call.checkJwtValid(JobLevel.ADMIN,JobLevel.TEAMLEAD,port = PUBLIC_PORT, jwtProvider = jwtProvider){
+                val username = call.request.queryParameters.get("username")
+                val selenium = call.request.queryParameters.get("seleniumAccess").toBoolean() ?: false
+                val carbonium = call.request.queryParameters.get("carboniumAccess").toBoolean() ?: false
+                val osmium = call.request.queryParameters.get("osmiumAccess").toBoolean() ?: false
+                val bohrium = call.request.queryParameters.get("bohriumAccess").toBoolean() ?: false
+                val krypton = call.request.queryParameters.get("kryptonAccess").toBoolean() ?: false
+                if (username ==null){
+                    call.respond(HttpStatusCode.BadRequest)
+                } else{
+                    //todo teamlead can update only his team
+                    val response = userModel.updateUserServiceAccess(username,selenium,carbonium,osmium,bohrium,krypton)
+                    call.respond(response)
+                }
+            }
+        }
+
 
 
 

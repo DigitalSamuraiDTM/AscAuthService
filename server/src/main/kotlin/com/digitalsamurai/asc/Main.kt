@@ -5,8 +5,13 @@ import com.digitalsamurai.asc.di.DaggerMainComponent
 import com.digitalsamurai.asc.di.DatabaseModule
 import com.digitalsamurai.asc.di.MainComponent
 import com.digitalsamurai.asc.di.MainModule
+import com.digitalsamurai.ascservice.di.EncryptorsModule
 import com.digitalsamurai.ascservice.di.MechModule
 import org.ktorm.database.Database
+import java.io.BufferedReader
+import java.io.File
+import java.io.FileNotFoundException
+import java.io.FileReader
 
 fun main(args : Array<String>){
 
@@ -30,6 +35,9 @@ object Preferences{
     private var rtToken = ""
     private var databasePass = ""
     private var jsonInfoActualVersion = ""
+    private var aesKey = ""
+    private var rsaPublicKey = ""
+    private var rsaPrivateKey = ""
 
     /**
      * Public DI component like DI component which created in Application in Android project
@@ -41,6 +49,19 @@ object Preferences{
     fun injectStartSettings(args: Array<String>){
         apkStorage = args[(args.indexOf("-apk_storage")+1)]
         jwtConfig = args[(args.indexOf("-jwt_config")+1)]
+
+        val encryptorConfig = args[(args.indexOf("-encryptor_config_path")+1)].toString()
+        //aes
+        val config = File(encryptorConfig)
+        if (!config.exists()){
+            throw FileNotFoundException("Config not found!")
+        }
+
+        val data  = BufferedReader(FileReader(config)).readLines()
+        aesKey = data[0]
+        rsaPublicKey = data[1]
+        rsaPrivateKey = data[2]
+
         rtConfig = args[(args.indexOf("-rt_config")+1)]
         jwtToken = args[(args.indexOf("-jwt_token")+1)]
         rtToken = args[(args.indexOf("-rt_token")+1)]
@@ -51,6 +72,7 @@ object Preferences{
     }
     fun prepareDI(){
         val databaseModule = DatabaseModule(databaseUrl,databaseLogin, databasePass)
+        val encryptorsModule = EncryptorsModule(aesKey, rsaPublicKey, rsaPrivateKey)
         val mainModule = MainModule(jsonInfoActualVersion, apkStorage)
         val mechModule = MechModule(
             jwtConfRoute = jwtConfig,
@@ -59,6 +81,7 @@ object Preferences{
             rtEncryptorToken = rtToken)
         mainComponent = DaggerMainComponent.builder()
             .mainModule(mainModule)
+            .encryptorsModule(encryptorsModule)
             .databaseModule(databaseModule).
             mechModule(mechModule).build()
     }

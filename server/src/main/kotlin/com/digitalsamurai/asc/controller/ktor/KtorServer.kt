@@ -3,7 +3,9 @@ package com.digitalsamurai.asc.controller.ktor
 import com.digitalsamurai.asc.LoggingService
 import com.digitalsamurai.asc.Preferences
 import com.digitalsamurai.asc.controller.ktor.plugins.configureAdminPanelRouting
+import com.digitalsamurai.asc.controller.ktor.plugins.configureAuthRouter
 import com.digitalsamurai.asc.model.appupdatemanager.AscModelUpdater
+import com.digitalsamurai.asc.model.auth.AuthModel
 import com.digitalsamurai.asc.model.usermanager.UserModel
 import com.digitalsamurai.ascservice.mech.database.users.entity.JobLevel
 import com.digitalsamurai.ascservice.mech.encryptors.AesEncryptor
@@ -60,6 +62,7 @@ class KtorServer() : Thread() {
                     workFunction(this,obj)
                     return
                 } catch (e : java.lang.Exception){
+                    e.printStackTrace()
                     this.respond(HttpStatusCode.BadRequest)
                     return
                 }
@@ -100,7 +103,7 @@ class KtorServer() : Thread() {
             }
         }
     }
-    private var ports = intArrayOf(PRIVATE_ASC_PORT, PUBLIC_ASC_PORT)
+    private var ports = intArrayOf(PRIVATE_ASC_PORT, PUBLIC_ASC_PORT, PUBLIC_AUTH_PORT)
     @Inject
     lateinit var model: AscModelUpdater
 
@@ -119,6 +122,8 @@ class KtorServer() : Thread() {
     @Inject
     lateinit var authEncryptor: AuthEncryptor
 
+    @Inject
+    lateinit var authModel: AuthModel
 
 
     init {
@@ -135,10 +140,10 @@ class KtorServer() : Thread() {
             module {
                 module()
             }
-            repeat(2){
+            ports.forEach {
                 connector {
                     host = "0.0.0.0"
-                    port = ports[it]
+                    port = it
                 }
             }
         }
@@ -150,6 +155,7 @@ class KtorServer() : Thread() {
 
         configureRouting(model, logger)
         configureAdminPanelRouting(jwtProvider, userModel)
+        configureAuthRouter(jwtProvider,userModel,gson,authEncryptor,authModel)
         configureSerialization(ContentNegotiation)
         configureMonitoring()
     }

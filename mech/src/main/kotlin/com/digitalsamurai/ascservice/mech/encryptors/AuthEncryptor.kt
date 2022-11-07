@@ -27,17 +27,17 @@ class AuthEncryptor(private val rsaEncryptor: RsaEncryptor,
     fun encryptData(data : String) : String{
         val aesEncr = aesEncryptor.encryptData(data.toByteArray())
         val rsaEncr = rsaEncryptor.encryptData(aesEncr)
-        return Base64.getEncoder().encodeToString(rsaEncr)
+        return Base64.getUrlEncoder().encodeToString(rsaEncr)
     }
 
     fun decryptData(data :String) : String{
-        val rsaDecr = rsaEncryptor.decryptData(Base64.getDecoder().decode(data))
+        val rsaDecr = rsaEncryptor.decryptData(Base64.getUrlDecoder().decode(data))
         val aesDecr = aesEncryptor.decryptData(rsaDecr)
         return String(aesDecr)
     }
 
     fun encryptAes(data : String, key : String) : String{
-        return Base64.getEncoder().encodeToString(aesEncryptor.encryptData(data.toByteArray(),
+        return Base64.getUrlEncoder().encodeToString(aesEncryptor.encryptData(data.toByteArray(),
             SecretKeySpec(key.toByteArray(StandardCharsets.UTF_8),"AES")))
     }
 

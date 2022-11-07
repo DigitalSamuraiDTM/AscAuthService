@@ -26,8 +26,17 @@ internal class RtDaoImpl(private val database : Database) :RtDao {
          }
     }
 
-    override suspend fun updateLastActive(token: String): Boolean {
-        return updateLastActive(token, LocalDateTime.now())
+    override suspend fun updateLastActive(user: String): Boolean {
+        return try {
+            database.update(RtTokens) {
+                set(RtTokens.lastActive, LocalDateTime.now())
+                where {
+                    RtTokens.user eq user
+                }
+            } == 1
+        } catch (e : java.lang.Exception){
+            return false
+        }
     }
 
     override suspend fun insertRtToken(
@@ -38,14 +47,19 @@ internal class RtDaoImpl(private val database : Database) :RtDao {
         status: RtTokenStatus,
         lastActive: LocalDateTime
     ): Boolean {
-        return database.insert(RtTokens){
-            set(RtTokens.user,user)
-            set(RtTokens.userAgent, agent)
-            set(RtTokens.token, token)
-            set(RtTokens.creatingDate, createDate)
-            set(RtTokens.status, status)
-            set(RtTokens.lastActive, lastActive)
-        } ==1
+        return try {
+            database.insert(RtTokens) {
+                set(RtTokens.user, user)
+                set(RtTokens.userAgent, agent)
+                set(RtTokens.token, token)
+                set(RtTokens.creatingDate, createDate)
+                set(RtTokens.status, status)
+                set(RtTokens.lastActive, lastActive)
+            } == 1
+        } catch (e : java.lang.Exception){
+            e.printStackTrace()
+            false
+        }
     }
 
     override suspend fun insertRtToken(token: String, user: String, agent: String): Boolean {

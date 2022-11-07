@@ -10,12 +10,12 @@ object Users : Table<User>("users"){
     val password = varchar("password").bindTo { it.password }
     val tgId = varchar("tg_id").bindTo { it.tgId }
     val tgTag = text("tg_tag").bindTo { it.tgTag }
-    val canUsePAGS = boolean("can_use_apk-service").bindTo { it.canUseOsmium }
-    val canUsePACS = boolean("can_use_sharing-service").bindTo { it.canUseSelenium }
-    val canUseDNS = boolean("can_use_deep-name-service").bindTo { it.canUseCarbonium }
-    val canUseTS = boolean("can_use_token-service").bindTo { it.canUseKrypton }
+    val osmiumAccess = boolean("can_use_apk-service").bindTo { it.canUseOsmium }
+    val seleniumAccess = boolean("can_use_sharing-service").bindTo { it.canUseSelenium }
+    val carboniumAccess = boolean("can_use_deep-name-service").bindTo { it.canUseCarbonium }
+    val kryptonAccess = boolean("can_use_token-service").bindTo { it.canUseKrypton }
+    val bohriumAccess = boolean("is_sub_service_alarm").bindTo { it.canUseBohrium }
     val isUseTgAlarm = boolean("is_sub_tg_alarm").bindTo { it.isUseTgAlarm }
-    val canSeeAppsInfo = boolean("is_sub_service_alarm").bindTo { it.canUseBohrium }
     val job = enum<JobLevel>("job").bindTo { it.job }
     val team = varchar("team").bindTo { it.team }
     val inviter = varchar("inviter").bindTo { it.inviter }
