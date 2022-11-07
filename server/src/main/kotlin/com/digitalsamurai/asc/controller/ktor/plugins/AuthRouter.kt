@@ -1,6 +1,7 @@
 package com.digitalsamurai.asc.controller.ktor.plugins
 
 import com.digitalsamurai.asc.controller.entity.NetworkUpdatePassword
+import com.digitalsamurai.asc.controller.entity.ServiceOkStatus
 import com.digitalsamurai.asc.controller.entity.auth.NetworkRequestLogin
 import com.digitalsamurai.asc.controller.ktor.KtorServer
 import com.digitalsamurai.asc.controller.ktor.KtorServer.Companion.authValid
@@ -108,7 +109,7 @@ fun Application.configureAuthRouter(jwtProvider: JwtProvider,
             call.authValid(PUBLIC_PORT, jwtProvider, authEncryptor, gson, NetworkUpdatePassword::class) { call, info ->
                 val jwt = jwtProvider.getPayload(call.request.headers["jwt"]!!)
                 val response = userModel.updateUserPassword(jwt, info!!)
-                call.respond(response)
+                call.respond(authEncryptor.encryptData(gson.toJson(ServiceOkStatus(response))))
             }
         }
 

@@ -101,7 +101,7 @@ class UserModel(private val teamDao: TeamDao,private val userDao : UserDao) {
         val userInfo = userDao.getUser(jwt.user)
         val info2 = userDao.getUser(info.username) ?: return false
         userInfo?.let {
-            return@let if (jwt.user == info.username ||
+            return if (jwt.user == info.username ||
                 userInfo.job == JobLevel.ADMIN ||
                 userInfo.job==JobLevel.TEAMLEAD && userInfo.team ==info2.team){
                 val response = userDao.updatePassword(info.username, info.newPassword)

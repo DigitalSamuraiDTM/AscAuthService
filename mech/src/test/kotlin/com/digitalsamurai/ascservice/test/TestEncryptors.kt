@@ -69,8 +69,8 @@ class TestEncryptors {
 //        println(authEncryptor.getPublicRSAKey())
         assert(a == authEncryptor.getPublicRSAKey())
         val data ="{\n" +
-                "    \"user\":\"andrew\",\n" +
-                "    \"pass\":\"andrew\",\n" +
+                "    \"username\":\"andrew\",\n" +
+                "    \"new_password\":\"testBomba\",\n" +
                 "    \"secret_key\":\"q0hlfhuhs6bc2j9v\"\n" +
                 "}"
         val encryptedData = authEncryptor.encryptData(data)
@@ -85,19 +85,7 @@ class TestEncryptors {
         println(aes2.getKey())
         assert(true)
     }
-    @Test
-    fun encryptDataLikeApp(){
 
-
-        val data ="{\n" +
-                "    \"user\":\"andrew\",\n" +
-                "    \"pass\":\"andrew\",\n" +
-                "    \"secret_key\":\"q0hlfhuhs6bc2j9v\"\n" +
-                "}"
-        val enc = authEncryptor.encryptData(data)
-        println(enc)
-        assert(true)
-    }
     @Test
     fun decryptAes(){
         aes = AesEncryptor(null)
