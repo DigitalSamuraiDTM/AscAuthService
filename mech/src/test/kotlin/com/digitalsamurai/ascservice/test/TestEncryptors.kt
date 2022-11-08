@@ -41,7 +41,7 @@ class TestEncryptors {
         val data = "{\n" +
                 "     \"user\":\"andrew\",\n" +
                 "     \"pass\":\"andrew\",\n" +
-                "     \"secret_key\":\"aGdkMDRzbXhibzd1OWxkOA==\"\n" +
+                "     \"secret_key\":\"nqe6hfzd94fbzowl\"\n" +
                 " }"
         val encrAes = aes.encryptData(data.toByteArray())
         println("encrypted aes: ${Base64.getEncoder().encodeToString(encrAes)}")
@@ -68,12 +68,9 @@ class TestEncryptors {
         val authEncryptor = AuthEncryptor(rsaEncryptor = rsa, aesEncryptor = aes)
 //        println(authEncryptor.getPublicRSAKey())
         assert(a == authEncryptor.getPublicRSAKey())
-        val data ="{\n" +
-                "    \"username\":\"andrew\",\n" +
-                "    \"new_password\":\"testBomba\",\n" +
-                "    \"secret_key\":\"q0hlfhuhs6bc2j9v\"\n" +
-                "}"
-        val encryptedData = authEncryptor.encryptData(data)
+        val data ="{\"pass\":\"a\",\"user\":\"a\",\"secret_token\":\"u33tfc08t1zzp0zo\"}"
+//        var encryptedData = authEncryptor.encryptData(data)
+        var encryptedData = "BCc0s3aTyGJeQYqmN-eWOmo3tXhkUJ7K1yAWGuYrxE_fmALFA1cQY-C05qUeGtIGkOlD5Z7mbYA8Ror2LSS5RptemejaM1mgnplQ4IrirFfnZXk0ajHUrXvw04ihTuUVZTStGZjTDtfCfVyGBbyRVFT81eFhrcMN3QYcCHWjBxE1DdT1Yisjatv7-IRfkVMccqTC5P7x3y4gQL1cQGSphoULtWCgbBDkUMWE1rtOSQ36kQKaOTIbNqPmKKR1qqScHt7Y6bXoDkUrrOPtdIIzSow6RFTXuAG5e6-TTqsox5KqmCqcflMd8n1u9vJNpSqs5YGVDKpUDJKIy2PXLYUlLw=="
         println(encryptedData)
         val decryptedData  =authEncryptor.decryptData(encryptedData)
         println(decryptedData)

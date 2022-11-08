@@ -144,6 +144,7 @@ class KtorServer() : Thread() {
                 connector {
                     host = "0.0.0.0"
                     port = it
+                    println("INIT PORT:${it}")
                 }
             }
         }

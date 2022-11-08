@@ -57,4 +57,24 @@ class AuthModel(private val rsaEncryptor: RsaEncryptor,
             }
         }
     }
+
+    suspend fun updateToken(jwt : String, rt : String): NetworkResponseLogin {
+        return if (rtProvider.isJwtBelongRt(jwt,rt)){
+
+            val user = jwtProvider.getPayload(jwt)
+            val newJwt = jwtProvider.createNewJwtKey(user)
+            var dbResponse =  rtDao.updateLastActive(user.user)
+            if (!dbResponse){
+                NetworkResponseLogin(false,3,null,null)
+            }
+            dbResponse = rtDao.updateTokenStatus(rt,RtTokenStatus.EXPIRED)
+            if (!dbResponse){
+                NetworkResponseLogin(false,3,null,null)
+            }
+            val newRt = rtProvider.createRtToken(newJwt)
+            NetworkResponseLogin(true,0,newJwt,newRt)
+        } else{
+            NetworkResponseLogin(false,4,null,null)
+        }
+    }
 }

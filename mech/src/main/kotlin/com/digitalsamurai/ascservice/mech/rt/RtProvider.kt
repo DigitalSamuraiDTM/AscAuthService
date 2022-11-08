@@ -18,9 +18,13 @@ class RtProvider(private val hmacToken : String,private val rtConfFile: File) {
         hmacEncoder.init(SecretKeySpec(hmacToken.toByteArray(StandardCharsets.UTF_8),"HmacSHA256"))
     }
     fun createRtToken(jwtToken : String) : String {
-        return Base64.getEncoder().encodeToString(hmacEncoder.doFinal(jwtToken.toByteArray()))
+        return Base64.getUrlEncoder().encodeToString(hmacEncoder.doFinal(jwtToken.toByteArray()))
     }
     fun getHoursLifetimeToken() : Int{
        return BufferedReader(FileReader(rtConfFile)).readLine().toInt()
+    }
+    fun isJwtBelongRt(jwt : String, rt : String) : Boolean{
+        val encodedJwt = Base64.getUrlEncoder().encodeToString(hmacEncoder.doFinal(jwt.toByteArray()))
+        return encodedJwt==rt
     }
 }

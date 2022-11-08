@@ -23,8 +23,8 @@ class RsaEncryptor(private var publicKeyString : String?,
     private var publicRSAKey : PublicKey
     private var privateRSAKey : PrivateKey
 
-    private var cipherDecryptor = Cipher.getInstance("RSA")
-    private var cipherEncryptor = Cipher.getInstance("RSA")
+    private var cipherDecryptor = Cipher.getInstance("RSA/ECB/PKCS1Padding")
+    private var cipherEncryptor = Cipher.getInstance("RSA/ECB/PKCS1Padding")
 
 
 

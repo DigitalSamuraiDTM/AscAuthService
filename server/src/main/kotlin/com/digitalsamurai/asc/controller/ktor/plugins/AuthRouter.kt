@@ -3,6 +3,7 @@ package com.digitalsamurai.asc.controller.ktor.plugins
 import com.digitalsamurai.asc.controller.entity.NetworkUpdatePassword
 import com.digitalsamurai.asc.controller.entity.ServiceOkStatus
 import com.digitalsamurai.asc.controller.entity.auth.NetworkRequestLogin
+import com.digitalsamurai.asc.controller.entity.auth.NetworkUpdateTokenRequest
 import com.digitalsamurai.asc.controller.ktor.KtorServer
 import com.digitalsamurai.asc.controller.ktor.KtorServer.Companion.authValid
 import com.digitalsamurai.asc.model.auth.AuthModel
@@ -65,6 +66,13 @@ fun Application.configureAuthRouter(jwtProvider: JwtProvider,
                 } else {
                     call.respond(authModel.openApp(null))
                 }
+            }
+        }
+
+        post("/updateToken"){
+            call.authValid(PUBLIC_PORT,null,authEncryptor,gson, NetworkUpdateTokenRequest::class){call, info->
+                val response = authModel.updateToken(info!!.jwt,info.rt)
+                call.respond(authEncryptor.encryptData(gson.toJson(response)))
             }
         }
 
