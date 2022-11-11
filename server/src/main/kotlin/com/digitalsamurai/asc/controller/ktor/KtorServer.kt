@@ -6,6 +6,7 @@ import com.digitalsamurai.asc.controller.ktor.plugins.configureAdminPanelRouting
 import com.digitalsamurai.asc.controller.ktor.plugins.configureAuthRouter
 import com.digitalsamurai.asc.model.appupdatemanager.AscModelUpdater
 import com.digitalsamurai.asc.model.auth.AuthModel
+import com.digitalsamurai.asc.model.serviceinfo.ServiceModel
 import com.digitalsamurai.asc.model.usermanager.UserModel
 import com.digitalsamurai.ascservice.mech.database.users.entity.JobLevel
 import com.digitalsamurai.ascservice.mech.encryptors.AesEncryptor
@@ -23,6 +24,7 @@ import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.server.engine.*
 import io.ktor.server.netty.*
+import java.util.*
 import javax.inject.Inject
 import kotlin.reflect.KClass
 
@@ -125,6 +127,8 @@ class KtorServer() : Thread() {
     @Inject
     lateinit var authModel: AuthModel
 
+    @Inject
+    lateinit var serviceModel: ServiceModel
 
     init {
         Preferences.mainComponent.injectKtorServer(this)
@@ -154,7 +158,7 @@ class KtorServer() : Thread() {
 
     fun Application.module(){
 
-        configureRouting(model, logger)
+        configureRouting(model, serviceModel, logger)
         configureAdminPanelRouting(jwtProvider, userModel)
         configureAuthRouter(jwtProvider,userModel,gson,authEncryptor,authModel)
         configureSerialization(ContentNegotiation)

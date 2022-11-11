@@ -39,11 +39,11 @@ class JwtProvider(
     }
     fun createNewJwtKey(jwtPayload : JwtPayload) : String{
         //encode header and payload in base64
-        val encodedHeaderString = Base64.getEncoder().withoutPadding().encodeToString(gson.toJson(header).toByteArray(Charsets.UTF_8))
-        val encodedPayloadString = Base64.getEncoder().withoutPadding().encodeToString(gson.toJson(jwtPayload).toByteArray(Charsets.UTF_8))
+        val encodedHeaderString = Base64.getUrlEncoder().withoutPadding().encodeToString(gson.toJson(header).toByteArray(Charsets.UTF_8))
+        val encodedPayloadString = Base64.getUrlEncoder().withoutPadding().encodeToString(gson.toJson(jwtPayload).toByteArray(Charsets.UTF_8))
 
         //create signature encode text
-        val signature = Base64.getEncoder().withoutPadding().encodeToString(hmacEncoder.doFinal("${encodedHeaderString}.${encodedPayloadString}".toByteArray(Charsets.UTF_8)))
+        val signature = Base64.getUrlEncoder().withoutPadding().encodeToString(hmacEncoder.doFinal("${encodedHeaderString}.${encodedPayloadString}".toByteArray(Charsets.UTF_8)))
         return "${encodedHeaderString}.${encodedPayloadString}.${signature}"
     }
 
@@ -75,7 +75,7 @@ class JwtProvider(
             val dateDeath = LocalDateTime.parse(decodePayloadData.dateDeath, DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))
 
             //check signature coding
-            val encodeSignature = Base64.getEncoder().withoutPadding().encodeToString(hmacEncoder.doFinal("${header}.${payload}".toByteArray(StandardCharsets.UTF_8)))
+            val encodeSignature = Base64.getUrlEncoder().withoutPadding().encodeToString(hmacEncoder.doFinal("${header}.${payload}".toByteArray(StandardCharsets.UTF_8)))
 
             if (encodeSignature != signature) {
                 return JwtStatus.INVALID
@@ -96,7 +96,7 @@ class JwtProvider(
             val payload = this[1]
 
             //decode payload
-            val decodePayloadData = Gson().fromJson(String(Base64.getDecoder().decode(payload.toByteArray())), JwtPayload::class.java)
+            val decodePayloadData = Gson().fromJson(String(Base64.getUrlDecoder().decode(payload.toByteArray())), JwtPayload::class.java)
             val dateDeath = LocalDateTime.parse(decodePayloadData.dateDeath, DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))
 
             return  decodePayloadData
@@ -104,12 +104,17 @@ class JwtProvider(
     }
 
     fun checkJwtJobAccess(jwt : String,jobLevelList : List<JobLevel>) : Boolean{
-        return true
+        val payload = getPayload(jwt)
+        return jobLevelList.contains(payload.access)
     }
 
-    private fun createJwtDeathTime() : String{
+    fun createJwtDeathTime() : String{
         val hoursTokenLife = BufferedReader(FileReader(configurationFile)).readLine()
         val currentDateTime = LocalDateTime.now().plusHours(hoursTokenLife.toLong())
+//        val currentDateTime = LocalDateTime.now().minusHours(hoursTokenLife.toLong())
         return currentDateTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))
+    }
+    fun getActualKey() : String{
+        return hmacKey
     }
 }

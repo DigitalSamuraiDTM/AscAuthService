@@ -1,5 +1,6 @@
 package com.digitalsamurai.ascservice.mech.encryptors
 
+import java.lang.Math.ceil
 import java.nio.charset.StandardCharsets
 import java.security.AuthProvider
 import java.security.KeyFactory
@@ -14,6 +15,7 @@ import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 import javax.security.auth.Subject
 import javax.security.auth.callback.CallbackHandler
+import kotlin.collections.ArrayList
 
 class AuthEncryptor(private val rsaEncryptor: RsaEncryptor,
                     private val aesEncryptor: AesEncryptor) {
@@ -31,8 +33,14 @@ class AuthEncryptor(private val rsaEncryptor: RsaEncryptor,
     }
 
     fun decryptData(data :String) : String{
-        val rsaDecr = rsaEncryptor.decryptData(Base64.getUrlDecoder().decode(data))
-        val aesDecr = aesEncryptor.decryptData(rsaDecr)
+        var decryptedRsa = Base64.getUrlDecoder().decode(data)
+        var buffer = ArrayList<Byte>()
+        repeat(kotlin.math.ceil(decryptedRsa.size / 256.0).toInt()){
+            val rsaDecr = rsaEncryptor.decryptData(decryptedRsa.slice(
+                IntRange(it*256,if ((it+1)*256<decryptedRsa.size){(it+1)*256-1}else{decryptedRsa.size-1})).toByteArray())
+            buffer.addAll(rsaDecr.toList())
+        }
+        val aesDecr = aesEncryptor.decryptData(buffer.toByteArray())
         return String(aesDecr)
     }
 

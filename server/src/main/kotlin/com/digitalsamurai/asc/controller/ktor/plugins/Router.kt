@@ -5,13 +5,14 @@ import com.digitalsamurai.asc.controller.entity.NetworkAppInfo
 import com.digitalsamurai.asc.controller.entity.ServiceOkStatus
 import com.digitalsamurai.asc.controller.ktor.KtorServer
 import com.digitalsamurai.asc.model.appupdatemanager.AscModelUpdater
+import com.digitalsamurai.asc.model.serviceinfo.ServiceModel
 import io.ktor.application.*
 import io.ktor.http.*
 import io.ktor.response.*
 import io.ktor.routing.*
 
 
-fun Application.configureRouting(model: AscModelUpdater, logger : LoggingService) {
+fun Application.configureRouting(model: AscModelUpdater, serviceModel : ServiceModel, logger : LoggingService) {
 
         routing {
             val PUBLIC_PORT = KtorServer.PUBLIC_ASC_PORT
@@ -53,6 +54,15 @@ fun Application.configureRouting(model: AscModelUpdater, logger : LoggingService
                     }
                 }
 
+            }
+
+            get("/getServiceInfo"){
+                if (call.request.local.port == PRIVATE_PORT){
+                    val serviceInfo = serviceModel.getServiceInfo()
+                    call.respond(serviceInfo)
+                } else{
+                    call.respond(HttpStatusCode.ServiceUnavailable)
+                }
             }
         }
 

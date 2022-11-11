@@ -6,6 +6,7 @@ import com.digitalsamurai.asc.model.appupdatemanager.AscModelUpdater
 import com.digitalsamurai.asc.model.appupdatemanager.AscModelUpdaterImpl
 import com.digitalsamurai.asc.model.appupdatemanager.fileprovider.FileProvider
 import com.digitalsamurai.asc.model.auth.AuthModel
+import com.digitalsamurai.asc.model.serviceinfo.ServiceModel
 import com.digitalsamurai.asc.model.usermanager.UserModel
 import com.digitalsamurai.ascservice.mech.database.rt.RtDao
 import com.digitalsamurai.ascservice.mech.database.teams.TeamDao
@@ -27,6 +28,13 @@ class MainModule(private val jsonInfoActualVersion : String,
     @Singleton
     fun provideModel(fileProvider: FileProvider) : AscModelUpdater {
         return AscModelUpdaterImpl(fileProvider)
+    }
+
+
+    @Provides
+    @Singleton
+    fun provideServiceModel(jwtProvider: JwtProvider) : ServiceModel {
+        return ServiceModel(jwtProvider)
     }
 
 

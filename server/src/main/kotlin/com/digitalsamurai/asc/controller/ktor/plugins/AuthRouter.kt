@@ -71,8 +71,13 @@ fun Application.configureAuthRouter(jwtProvider: JwtProvider,
 
         post("/updateToken"){
             call.authValid(PUBLIC_PORT,null,authEncryptor,gson, NetworkUpdateTokenRequest::class){call, info->
-                val response = authModel.updateToken(info!!.jwt,info.rt)
-                call.respond(authEncryptor.encryptData(gson.toJson(response)))
+                val agent = call.request.headers.get("User-Agent")
+                if (agent==null){
+                    call.respond(HttpStatusCode.Forbidden)
+                    return@post
+                }
+                val response = authModel.updateToken(info!!.jwt,info.rt,agent)
+                call.respond(authEncryptor.encryptAes(gson.toJson(response),info.key))
             }
         }
 

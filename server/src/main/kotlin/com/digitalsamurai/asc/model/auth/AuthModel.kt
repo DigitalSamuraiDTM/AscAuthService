@@ -58,23 +58,25 @@ class AuthModel(private val rsaEncryptor: RsaEncryptor,
         }
     }
 
-    suspend fun updateToken(jwt : String, rt : String): NetworkResponseLogin {
-        return if (rtProvider.isJwtBelongRt(jwt,rt)){
+    suspend fun updateToken(jwt : String, rt : String, agent : String): NetworkResponseLogin {
+        if (rtProvider.isJwtBelongRt(jwt,rt)){
 
-            val user = jwtProvider.getPayload(jwt)
-            val newJwt = jwtProvider.createNewJwtKey(user)
-            var dbResponse =  rtDao.updateLastActive(user.user)
+            val payload = jwtProvider.getPayload(jwt)
+            val user = userDao.getUser(payload.user) ?: return NetworkResponseLogin(false,2,null,null)
+            val newJwt = jwtProvider.createNewJwtKey(user,agent)
+            var dbResponse =  rtDao.updateLastActive(payload.user)
             if (!dbResponse){
-                NetworkResponseLogin(false,3,null,null)
+                return NetworkResponseLogin(false,3,null,null)
             }
             dbResponse = rtDao.updateTokenStatus(rt,RtTokenStatus.EXPIRED)
             if (!dbResponse){
-                NetworkResponseLogin(false,3,null,null)
+                return NetworkResponseLogin(false,3,null,null)
             }
             val newRt = rtProvider.createRtToken(newJwt)
-            NetworkResponseLogin(true,0,newJwt,newRt)
+            dbResponse = rtDao.insertRtToken(newRt,payload.user,agent)
+            return NetworkResponseLogin(true,0,newJwt,newRt)
         } else{
-            NetworkResponseLogin(false,4,null,null)
+            return NetworkResponseLogin(false,4,null,null)
         }
     }
 }

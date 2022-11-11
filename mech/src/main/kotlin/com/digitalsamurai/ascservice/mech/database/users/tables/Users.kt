@@ -14,7 +14,7 @@ object Users : Table<User>("users"){
     val seleniumAccess = boolean("can_use_sharing-service").bindTo { it.canUseSelenium }
     val carboniumAccess = boolean("can_use_deep-name-service").bindTo { it.canUseCarbonium }
     val kryptonAccess = boolean("can_use_token-service").bindTo { it.canUseKrypton }
-    val bohriumAccess = boolean("is_sub_service_alarm").bindTo { it.canUseBohrium }
+    val bohriumAccess = boolean("can_use_alarm-service").bindTo { it.canUseBohrium }
     val isUseTgAlarm = boolean("is_sub_tg_alarm").bindTo { it.isUseTgAlarm }
     val job = enum<JobLevel>("job").bindTo { it.job }
     val team = varchar("team").bindTo { it.team }
