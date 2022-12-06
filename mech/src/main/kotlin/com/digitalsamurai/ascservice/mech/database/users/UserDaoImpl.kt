@@ -27,6 +27,16 @@ internal class UserDaoImpl(private val database : Database,private val passwordE
         }
     }
 
+    override suspend fun getUsernameByTgId(tgId: String): User? {
+        return try {
+            database.from(Users).select().where {
+                Users.tgId eq tgId
+            }.map { database.user.entityExtractor(it) }[0]
+        } catch (e : java.lang.Exception) {
+            return null
+        }
+    }
+
     override suspend fun getAuthUsers(team: String): List<User> {
         return database.from(Users).select().where {
                 Users.team eq team
@@ -231,7 +241,9 @@ internal class UserDaoImpl(private val database : Database,private val passwordE
         if (isUsernameExist(username)){
             return false
         }
-        val pass = passwordEncryptor.encryptStringData(password)
+        //TODO turn on
+//        val pass = passwordEncryptor.encryptStringData(password)
+        val pass = password
         return try {
 
             database.insert(Users) {

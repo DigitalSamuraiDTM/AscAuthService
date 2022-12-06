@@ -67,7 +67,7 @@ class TestEncryptors {
         val authEncryptor = AuthEncryptor(rsaEncryptor = rsa, aesEncryptor = aes)
 //        println(authEncryptor.getPublicRSAKey())
         assert(a == authEncryptor.getPublicRSAKey())
-        val data ="{\"pass\":\"a\",\"user\":\"a\",\"secret_token\":\"u33tfc08t1zzp0zo\"}"
+        val data ="{\"pass\":\"andrew\",\"user\":\"andrew\",\"secret_token\":\"u33tfc08t1zzp0zo\"}"
 //        var encryptedData = authEncryptor.encryptData(data)
         var encryptedData = "OyjOrvy7UGgkzkEGlmkZTlTaozpBdN3Rlxpk_pqr1SCKu8Z3CNAUHJudfYgvdq-I3ph0wU1nTn_s7hPLjbAYhS5GsvT9MDWM4J83_ozV8tK4PtWqeWA2Ha9bEmyC1za0pWT7ZK7SEmxPG4mebCbPRUnNavkEsAEmjCYW60cCSRpTuWBBidbrd3n4kDogLqBqXzYj1UG8AWvVkPc694QRbCDtubJwiRGQ7pKedYIZacjJ-jI_b87jnKlCEuyZag56UnUaXv0reGQ_VW7GnHeaGrA6njH5L5LpwEt5mm_VkgQk12uAjlQ5iV103r2xKs_XPcxqOz5H3xV17NHHJJ-H50uPU9eCqktRFWF3Y2jmYqkTBqM5Higdg-6K8TtgHYZSB2RtwqPqcY1DIwnXZBD6WytROvLG1GH8xiDGNa2B9z3FVhCITD1Q7jv5nEgZ1l1NDMXr9yRfXYgcW96vT20O4HpysxpuJ37H0HF4hqsmInyEgKYoqJ0_BJg5dFQwt8S-tCAypBKggpSWthmbBFVF1we6RGaBYmq4u89UMDMj5qmzOS5ONwCill93BHT8IPyuFfb-Nt7QLeBIUgA5k-I3Ag39ztGIWCg1Ij2pp5tvVozpAhf1zb6OG0LYZkalc04hFJWHQ9LBM6ETb1z26Sn0ScN-40Yv4ANzR1vRHErwklc="
         println(encryptedData)

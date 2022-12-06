@@ -27,11 +27,12 @@ internal class RtDaoImpl(private val database : Database) :RtDao {
     }
 
     override suspend fun updateLastActive(user: String): Boolean {
+        val activeToken = getActiveToken(user) ?: return false
         return try {
             database.update(RtTokens) {
                 set(RtTokens.lastActive, LocalDateTime.now())
                 where {
-                    RtTokens.user eq user
+                    RtTokens.token eq activeToken.token
                 }
             } == 1
         } catch (e : java.lang.Exception){

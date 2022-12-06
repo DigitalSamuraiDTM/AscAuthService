@@ -35,7 +35,7 @@ fun Application.configureRouting(model: AscModelUpdater, serviceModel : ServiceM
 
             get("/downloadActualVersion"){
                 when(call.request.local.port){
-                    PRIVATE_PORT->{
+                    PUBLIC_PORT->{
                         val info = model.getActualApk()
                         val file = info.apk
                         call.response.header("FILENAME",info.apkName)
@@ -45,7 +45,7 @@ fun Application.configureRouting(model: AscModelUpdater, serviceModel : ServiceM
                         call.response.header("PATCH",info.version.path)
                         call.respondFile(file)
                     }
-                    PUBLIC_PORT->{
+                    PRIVATE_PORT->{
                         call.respond(HttpStatusCode.NoContent)
                     }
                     else->{

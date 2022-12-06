@@ -4,10 +4,14 @@ import com.google.gson.annotations.SerializedName
 
 data class NetworkUpdatePassword (
 
+
     @SerializedName("username")
     val username : String,
 
     @SerializedName("new_password")
     val newPassword : String,
 
-        )
+    @SerializedName("secret_key")
+    override val key: String,
+
+    ):AuthKey

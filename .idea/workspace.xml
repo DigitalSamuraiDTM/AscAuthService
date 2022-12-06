@@ -4,20 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c3b19108-31a1-4e75-a9db-e775715138f9" name="Changes" comment="rsa fixes, network fixes">
-      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/entity/serviceinfo/NetworkResponseServiceInfo.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/serviceinfo/ServiceModel.kt" afterDir="false" />
+    <list default="true" id="c3b19108-31a1-4e75-a9db-e775715138f9" name="Changes" comment="auth fixes">
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/entity/adminpanel/NetworkOkBodyResponse.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/entity/adminpanel/UsernameExistResponse.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/tables/Users.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/tables/Users.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/encryptors/AuthEncryptor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/encryptors/AuthEncryptor.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/jwt/JwtProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/jwt/JwtProvider.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/test/kotlin/com/digitalsamurai/ascservice/test/JwtProviderTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/test/kotlin/com/digitalsamurai/ascservice/test/JwtProviderTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/rt/RtDaoImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/rt/RtDaoImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/UserDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/UserDao.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/UserDaoImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/UserDaoImpl.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mech/src/test/kotlin/com/digitalsamurai/ascservice/test/TestEncryptors.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/test/kotlin/com/digitalsamurai/ascservice/test/TestEncryptors.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/KtorServer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/KtorServer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/entity/NetworkResponseRegistrationUser.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/entity/NetworkResponseRegistrationUser.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/entity/NetworkUpdatePassword.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/entity/NetworkUpdatePassword.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AuthRouter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AuthRouter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/Router.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/Router.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/di/MainModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/di/MainModule.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/auth/AuthModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/auth/AuthModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +75,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;14&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/work/IDEA_project/ktorTestApi&quot;
+    &quot;last_opened_file_path&quot;: &quot;D:/work/IDEA_project/MobileAppService&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -98,7 +99,7 @@
       <recent name="com.digitalsamurai.asc.controller.ktor" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.MainKt">
+  <component name="RunManager" selected="Gradle.TestEncryptors.testAuth (1)">
     <configuration name="JwtProviderTest.checkEqual" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -168,7 +169,7 @@
       <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="TestEncryptors.testAuth" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="TestEncryptors.testAuth (1)" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -231,10 +232,10 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Gradle.TestEncryptors.testAuth (1)" />
       <item itemvalue="Gradle.JwtProviderTest.checkEqual" />
       <item itemvalue="Gradle.JwtProviderTest.test" />
       <item itemvalue="Gradle.TestEncryptors.decryptAes" />
-      <item itemvalue="Gradle.TestEncryptors.testAuth" />
       <item itemvalue="JUnit.Encryptor test" />
       <item itemvalue="JUnit.database" />
       <item itemvalue="JUnit.Jwt" />
@@ -242,10 +243,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.TestEncryptors.testAuth (1)" />
         <item itemvalue="Kotlin.MainKt" />
         <item itemvalue="Gradle.JwtProviderTest.checkEqual" />
         <item itemvalue="Gradle.TestEncryptors.decryptAes" />
-        <item itemvalue="Gradle.TestEncryptors.testAuth" />
         <item itemvalue="Gradle.JwtProviderTest.test" />
       </list>
     </recent_temporary>
@@ -336,7 +337,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667926985363</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="auth fixes">
+      <created>1668164583667</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1668164583667</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -362,29 +370,30 @@
     <MESSAGE value="Authorization. Login, encrypting aes + rsa + response aes" />
     <MESSAGE value="fix update password command" />
     <MESSAGE value="rsa fixes, network fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="rsa fixes, network fixes" />
+    <MESSAGE value="auth fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="auth fixes" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt</url>
-          <line>124</line>
+          <line>143</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt</url>
-          <line>125</line>
+          <line>145</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt</url>
-          <line>127</line>
+          <line>148</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt</url>
-          <line>126</line>
+          <line>147</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
@@ -394,107 +403,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AuthRouter.kt</url>
-          <line>92</line>
+          <line>96</line>
           <option name="timeStamp" value="101" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AuthRouter.kt</url>
-          <line>123</line>
-          <option name="timeStamp" value="112" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AuthRouter.kt</url>
-          <line>122</line>
-          <option name="timeStamp" value="113" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AuthRouter.kt</url>
-          <line>124</line>
-          <option name="timeStamp" value="114" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt</url>
-          <line>100</line>
-          <option name="timeStamp" value="115" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt</url>
-          <line>101</line>
-          <option name="timeStamp" value="116" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt</url>
-          <line>102</line>
-          <option name="timeStamp" value="117" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt</url>
-          <line>103</line>
-          <option name="timeStamp" value="118" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt</url>
-          <line>104</line>
-          <option name="timeStamp" value="119" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt</url>
-          <line>105</line>
-          <option name="timeStamp" value="120" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt</url>
-          <line>106</line>
-          <option name="timeStamp" value="121" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt</url>
-          <line>107</line>
-          <option name="timeStamp" value="122" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt</url>
-          <line>109</line>
-          <option name="timeStamp" value="123" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt</url>
-          <line>112</line>
-          <option name="timeStamp" value="124" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/UserDaoImpl.kt</url>
-          <line>88</line>
-          <option name="timeStamp" value="126" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/UserDaoImpl.kt</url>
-          <line>87</line>
-          <option name="timeStamp" value="127" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/UserDaoImpl.kt</url>
-          <line>89</line>
-          <option name="timeStamp" value="128" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/UserDaoImpl.kt</url>
-          <line>90</line>
-          <option name="timeStamp" value="129" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/UserDaoImpl.kt</url>
-          <line>91</line>
-          <option name="timeStamp" value="130" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/auth/AuthModel.kt</url>
-          <line>31</line>
+          <line>33</line>
           <option name="timeStamp" value="139" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/auth/AuthModel.kt</url>
-          <line>29</line>
+          <line>30</line>
           <option name="timeStamp" value="140" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
@@ -509,73 +428,58 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/auth/AuthModel.kt</url>
-          <line>61</line>
-          <option name="timeStamp" value="147" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/auth/AuthModel.kt</url>
-          <line>63</line>
-          <option name="timeStamp" value="148" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/auth/AuthModel.kt</url>
-          <line>65</line>
-          <option name="timeStamp" value="149" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/auth/AuthModel.kt</url>
-          <line>22</line>
+          <line>23</line>
           <option name="timeStamp" value="150" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/auth/AuthModel.kt</url>
-          <line>23</line>
+          <line>24</line>
           <option name="timeStamp" value="151" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/auth/AuthModel.kt</url>
-          <line>25</line>
+          <line>26</line>
           <option name="timeStamp" value="152" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/auth/AuthModel.kt</url>
-          <line>66</line>
-          <option name="timeStamp" value="153" />
+          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt</url>
+          <line>246</line>
+          <option name="timeStamp" value="163" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/auth/AuthModel.kt</url>
-          <line>67</line>
-          <option name="timeStamp" value="154" />
+          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt</url>
+          <line>247</line>
+          <option name="timeStamp" value="164" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/auth/AuthModel.kt</url>
-          <line>68</line>
-          <option name="timeStamp" value="155" />
+          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt</url>
+          <line>249</line>
+          <option name="timeStamp" value="165" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/auth/AuthModel.kt</url>
-          <line>70</line>
-          <option name="timeStamp" value="156" />
+          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt</url>
+          <line>250</line>
+          <option name="timeStamp" value="166" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/auth/AuthModel.kt</url>
-          <line>71</line>
-          <option name="timeStamp" value="157" />
+          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt</url>
+          <line>251</line>
+          <option name="timeStamp" value="167" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/auth/AuthModel.kt</url>
-          <line>72</line>
-          <option name="timeStamp" value="158" />
+          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt</url>
+          <line>199</line>
+          <option name="timeStamp" value="168" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/auth/AuthModel.kt</url>
-          <line>74</line>
-          <option name="timeStamp" value="159" />
+          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt</url>
+          <line>198</line>
+          <option name="timeStamp" value="169" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/auth/AuthModel.kt</url>
-          <line>76</line>
-          <option name="timeStamp" value="160" />
+          <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt</url>
+          <line>197</line>
+          <option name="timeStamp" value="170" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

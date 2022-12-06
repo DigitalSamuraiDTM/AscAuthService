@@ -18,6 +18,7 @@ interface UserDao {
 
     suspend fun pageAuthUsers(searchText : String?, current : Int, pageSize : Int, sortingField : UserSortingField, sortingType : SortingType) : List<User>
 
+    suspend fun getUsernameByTgId(tgId : String) : User?
 
     //-------------UPDATING DATA ---------------------------
 

@@ -1,11 +1,14 @@
 package com.digitalsamurai.asc.controller.ktor.plugins
 
+import com.digitalsamurai.asc.controller.entity.NetworkRegistrationUserInfo
 import com.digitalsamurai.asc.controller.entity.NetworkUpdatePassword
 import com.digitalsamurai.asc.controller.entity.ServiceOkStatus
+import com.digitalsamurai.asc.controller.entity.adminpanel.NetworkOkBodyResponse
 import com.digitalsamurai.asc.controller.entity.auth.NetworkRequestLogin
 import com.digitalsamurai.asc.controller.entity.auth.NetworkUpdateTokenRequest
 import com.digitalsamurai.asc.controller.ktor.KtorServer
 import com.digitalsamurai.asc.controller.ktor.KtorServer.Companion.authValid
+import com.digitalsamurai.asc.controller.ktor.KtorServer.Companion.checkJwtValid
 import com.digitalsamurai.asc.model.auth.AuthModel
 import com.digitalsamurai.asc.model.usermanager.UserModel
 import com.digitalsamurai.ascservice.mech.database.users.entity.JobLevel
@@ -82,6 +85,7 @@ fun Application.configureAuthRouter(jwtProvider: JwtProvider,
         }
 
         post("/login") {
+            //todo remove existed rt
             call.authValid(PUBLIC_PORT,null,authEncryptor,gson, NetworkRequestLogin::class){ call,info->
                 val header = call.request.headers["User-Agent"]
                 if (header==null){
@@ -95,7 +99,10 @@ fun Application.configureAuthRouter(jwtProvider: JwtProvider,
         }
 
         post("/logout"){
-            //todo
+            call.checkJwtValid(port= PUBLIC_PORT, jwtProvider =jwtProvider){
+                val jwt = call.request.headers["jwt"]!!
+                call.respond(authModel.logout(jwt))
+            }
         }
 
 
@@ -109,20 +116,19 @@ fun Application.configureAuthRouter(jwtProvider: JwtProvider,
          *
          * */
 
-        //TODO TEST
         post("/registerUser") {
-            call.authValid(PUBLIC_PORT, jwtProvider, authEncryptor, gson, NetworkUpdatePassword::class) { call, info ->
+            call.authValid(PUBLIC_PORT, jwtProvider, authEncryptor, gson, NetworkRegistrationUserInfo::class) { call, info ->
                 val jwt = jwtProvider.getPayload(call.request.headers["jwt"]!!)
-                val response = userModel.updateUserPassword(jwt, info!!)
+                val response = userModel.registerUser(jwt,info!!)
 
-                call.respond(response)
+                call.respond(authEncryptor.encryptAes(gson.toJson(response),info.key))
             }
         }
-        put("/updateUsernamePassword") {
+        put("/updatePassword") {
             call.authValid(PUBLIC_PORT, jwtProvider, authEncryptor, gson, NetworkUpdatePassword::class) { call, info ->
                 val jwt = jwtProvider.getPayload(call.request.headers["jwt"]!!)
                 val response = userModel.updateUserPassword(jwt, info!!)
-                call.respond(authEncryptor.encryptData(gson.toJson(ServiceOkStatus(response))))
+                call.respond(authEncryptor.encryptAes(gson.toJson(response),info.key))
             }
         }
 
