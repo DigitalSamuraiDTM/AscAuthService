@@ -5,6 +5,7 @@ import com.digitalsamurai.asc.controller.entity.NetworkResponseRegistrationUser
 import com.digitalsamurai.asc.controller.entity.NetworkUpdatePassword
 import com.digitalsamurai.asc.controller.entity.adminpanel.NetworkOkBodyResponse
 import com.digitalsamurai.asc.controller.entity.adminpanel.UsernameExistResponse
+import com.digitalsamurai.asc.controller.entity.auth.NetworkRequestBindTelegram
 import com.digitalsamurai.asc.model.usermanager.entity.BaseDataUser
 import com.digitalsamurai.asc.model.usermanager.entity.UserInfo
 import com.digitalsamurai.asc.model.usermanager.entity.toUserInfo
@@ -237,6 +238,19 @@ class UserModel(private val teamDao: TeamDao,private val userDao : UserDao) {
             }
         } else{
             NetworkOkBodyResponse(false,"Access denied")
+        }
+    }
+
+    suspend fun bindTelegram(info: NetworkRequestBindTelegram): NetworkOkBodyResponse {
+        val user = userDao.getUser(info.username)
+        return if (user != null){
+            if(userDao.bindTelegramToAccount(user.username,info.tgId,null)){
+                NetworkOkBodyResponse(true)
+            } else{
+                NetworkOkBodyResponse(false,"Database request error")
+            }
+        } else{
+            NetworkOkBodyResponse(false,"User not found")
         }
     }
 
