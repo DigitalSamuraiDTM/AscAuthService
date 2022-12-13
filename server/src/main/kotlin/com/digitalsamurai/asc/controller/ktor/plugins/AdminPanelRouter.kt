@@ -1,5 +1,6 @@
 package com.digitalsamurai.asc.controller.ktor.plugins
 
+import com.digitalsamurai.asc.controller.entity.NetworkTeamInfo
 import com.digitalsamurai.asc.controller.entity.adminpanel.NetworkOkBodyResponse
 import com.digitalsamurai.asc.controller.ktor.KtorServer
 import com.digitalsamurai.asc.controller.ktor.KtorServer.Companion.authValid
@@ -34,10 +35,29 @@ fun Application.configureAdminPanelRouting(jwtProvider : JwtProvider,userModel :
             }
         }
 
+
+
+        /**
+         * All team info
+         * Only for [ADMIN],[TEAMLEAD],[AFF],[ARBITR_1W]
+         * Return: List[String]
+         * */
+
+        get("/getAllTeamInfo") {
+            call.checkJwtValid(JobLevel.ADMIN,JobLevel.TEAMLEAD,JobLevel.ARBITR_1W,JobLevel.AFFILIATE, port = PUBLIC_PORT, jwtProvider = jwtProvider) {
+                val teamName = it.request.queryParameters["team_name"]
+                if (teamName==null){
+                    call.respond(HttpStatusCode.BadRequest)
+                } else{
+                    call.respond(userModel.getAllTeamInfo(teamName))
+                }
+            }
+        }
+
         /**
          * Teams list
          * Only for [ADMIN]
-         * list[String]
+         * Return: List[NetworkTeamInfo]
          * */
 
         get("/getTeams") {

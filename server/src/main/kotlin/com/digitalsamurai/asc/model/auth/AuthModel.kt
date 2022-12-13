@@ -28,7 +28,7 @@ class AuthModel(private val rsaEncryptor: RsaEncryptor,
     }
 
     suspend fun login(info: NetworkRequestLogin, userAgent : String): NetworkResponseLogin {
-        val dbUser = userDao.getUser(info.username)
+        val dbUser = userDao.getAllUserInfo(info.username)
 
         if (dbUser==null){
             return NetworkResponseLogin(false,2,null,null)
@@ -63,7 +63,7 @@ class AuthModel(private val rsaEncryptor: RsaEncryptor,
         if (rtProvider.isJwtBelongRt(jwt,rt)){
 
             val payload = jwtProvider.getPayload(jwt)
-            val user = userDao.getUser(payload.user) ?: return NetworkResponseLogin(false,2,null,null)
+            val user = userDao.getAllUserInfo(payload.user) ?: return NetworkResponseLogin(false,2,null,null)
             val newJwt = jwtProvider.createNewJwtKey(user,agent)
             var dbResponse =  rtDao.updateLastActive(payload.user)
             if (!dbResponse){

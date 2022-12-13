@@ -1,3 +1,5 @@
+import com.digitalsamurai.ascservice.mech.database.teams.TeamDao
+import com.digitalsamurai.ascservice.mech.database.teams.TeamDaoImpl
 import com.digitalsamurai.ascservice.mech.database.users.UserDaoImpl
 import com.digitalsamurai.ascservice.mech.database.users.entity.JobLevel
 import com.digitalsamurai.ascservice.mech.encryptors.PasswordEncryptor
@@ -10,12 +12,21 @@ class DatabaseTest {
 
 
     private lateinit var database : UserDaoImpl
+    private lateinit var databaseTeam : TeamDaoImpl
 
     @BeforeEach
     fun before(){
-        database = UserDaoImpl(Database.connect(url = "jdbc:mysql://127.0.0.1:3306/ascdb",user ="root",password = "123456"), PasswordEncryptor())
+        val d = Database.connect(url = "jdbc:mysql://127.0.0.1:3306/ascdb",user ="root",password = "123456")
+        database = UserDaoImpl(d, PasswordEncryptor())
+        databaseTeam = TeamDaoImpl(d)
     }
 
+    @Test
+    fun testGetTeams() = runBlocking{
+        val list  =databaseTeam.getTeamsList()
+        println(list.joinToString(", \n"))
+        assert(true)
+    }
 
     @Test
     fun testGetAuthUser() = runBlocking {
@@ -35,8 +46,8 @@ class DatabaseTest {
     @Test
     fun testInsert() = runBlocking {
 
-        val users = database.insertUser("pudge2","password","awdafrfdsr","aiiajwdia",true,false,true,false,true,
-            JobLevel.WEB,"team","andrew")
+        val users = database.insertUser("pudge5343awdawd","password",null,null,true,false,true,false,true,
+            JobLevel.WEB,"1Win","andrew")
         assert(users)
     }
     @Test

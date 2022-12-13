@@ -1,6 +1,7 @@
 package com.digitalsamurai.ascservice.mech.jwt
 
 import com.digitalsamurai.ascservice.mech.database.users.entity.JobLevel
+import com.digitalsamurai.ascservice.mech.database.users.tables.AllUserInfo
 import com.digitalsamurai.ascservice.mech.database.users.tables.User
 import com.digitalsamurai.ascservice.mech.jwt.entity.JwtHeader
 import com.digitalsamurai.ascservice.mech.jwt.entity.JwtPayload
@@ -47,7 +48,7 @@ class JwtProvider(
         return "${encodedHeaderString}.${encodedPayloadString}.${signature}"
     }
 
-    fun createNewJwtKey(user : User,device : String) : String{
+    fun createNewJwtKey(user : AllUserInfo,device : String) : String{
         //create payload before
         val jwtPayload = JwtPayload(
             user = user.username,

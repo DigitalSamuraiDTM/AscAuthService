@@ -8,12 +8,13 @@ import org.ktorm.schema.varchar
 
 object Teams : Table<Team>("teams"){
     val teamName = varchar("team_name").bindTo { it.teamName }
-    val interactionsType = enum<InteractionsType>("interactions_type")
-
+    val interactionsType = enum<InteractionsType>("interactions_type").bindTo { it.interactionsType }
+    val note = varchar("note").bindTo { it.note }
 }
 interface Team : Entity<Team>{
     companion object : Entity.Factory<Team>()
 
     val teamName : String
     val interactionsType : InteractionsType
+    val note : String
 }

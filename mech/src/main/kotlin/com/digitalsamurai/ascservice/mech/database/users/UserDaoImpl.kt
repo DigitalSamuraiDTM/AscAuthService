@@ -2,8 +2,10 @@ package com.digitalsamurai.ascservice.mech.database.users
 
 import com.digitalsamurai.ascservice.mech.database.entity.AscService
 import com.digitalsamurai.ascservice.mech.database.entity.SortingType
+import com.digitalsamurai.ascservice.mech.database.inviters.Inviters
 import com.digitalsamurai.ascservice.mech.database.users.entity.JobLevel
 import com.digitalsamurai.ascservice.mech.database.users.entity.UserSortingField
+import com.digitalsamurai.ascservice.mech.database.users.tables.AllUserInfo
 import com.digitalsamurai.ascservice.mech.database.users.tables.User
 import com.digitalsamurai.ascservice.mech.database.users.tables.Users
 import com.digitalsamurai.ascservice.mech.encryptors.PasswordEncryptor
@@ -17,11 +19,33 @@ internal class UserDaoImpl(private val database : Database,private val passwordE
     private val Database.user get() = this.sequenceOf(Users)
 
 
-    override suspend fun getUser(username: String): User? {
+    override suspend fun getAllUserInfo(username: String): AllUserInfo? {
         return try {
-            database.from(Users).select().where {
-                Users.username eq username
-            }.map { database.user.entityExtractor(it) }[0]
+            database.from(Users)
+                .innerJoin(Inviters, on = Users.username eq Inviters.username)
+                .select()
+                .where { Users.username eq username }
+                .map { row->
+                    if (row[Users.username]==null){
+                        null
+                    } else{
+                        AllUserInfo(
+                            username = row[Users.username]!!,
+                            password = row[Users.password]!!,
+                            tgId = row[Users.tgId],
+                            tgTag = row[Users.tgTag],
+                            canUseOsmium = row[Users.osmiumAccess] ?:false,
+                            canUseSelenium = row[Users.seleniumAccess] ?: false, 
+                            canUseCarbonium = row[Users.carboniumAccess] ?: false, 
+                            canUseBohrium = row[Users.bohriumAccess] ?: false,
+                            canUseKrypton = row[Users.kryptonAccess] ?: false,
+                            isUseTgAlarm = row[Users.isUseTgAlarm] ?: false,
+                            job=row[Users.job]!!,
+                            team = row[Users.team]!!,
+                            inviter = row[Inviters.inviterName]!!)
+                    }
+
+            }[0]
         } catch (e : java.lang.Exception) {
             return null
         }
@@ -162,9 +186,9 @@ internal class UserDaoImpl(private val database : Database,private val passwordE
 
     override suspend fun updateInviter(username: String, inviter: String): Boolean {
         return database.update(Users){
-            set(Users.inviter,inviter)
+            set(Inviters.inviterName,inviter)
             where {
-                Users.username eq username
+                Inviters.username eq username
             }
         } == 1
     }
@@ -245,22 +269,29 @@ internal class UserDaoImpl(private val database : Database,private val passwordE
 //        val pass = passwordEncryptor.encryptStringData(password)
         val pass = password
         return try {
-
-            database.insert(Users) {
-                set(Users.username, username)
-                set(Users.password, pass)
-                set(Users.tgId, tgId)
-                set(Users.tgTag, tgTag)
-                set(Users.seleniumAccess, canUseSelenium)
-                set(Users.osmiumAccess, canUseOsmium)
-                set(Users.carboniumAccess, canUseCarbonium)
-                set(Users.kryptonAccess, canUseKrypton)
-                set(Users.bohriumAccess, canUseBohrium)
-                set(Users.job, jobLevel)
-                set(Users.team, team)
-                set(Users.inviter, inviter)
-            } == 1
+            database.useTransaction {
+                database.insert(Users) {
+                    set(Users.username, username)
+                    set(Users.password, pass)
+                    set(Users.tgId, tgId)
+                    set(Users.tgTag, tgTag)
+                    set(Users.seleniumAccess, canUseSelenium)
+                    set(Users.osmiumAccess, canUseOsmium)
+                    set(Users.carboniumAccess, canUseCarbonium)
+                    set(Users.kryptonAccess, canUseKrypton)
+                    set(Users.bohriumAccess, canUseBohrium)
+                    set(Users.job, jobLevel)
+                    set(Users.team, team)
+                }
+                database.insert(Inviters){
+                    set(Inviters.username,username)
+                    set(Inviters.inviterName,inviter)
+                }
+                it.commit()
+            }
+            true
         } catch (e : java.lang.Exception){
+            e.printStackTrace()
             false
         }
     }

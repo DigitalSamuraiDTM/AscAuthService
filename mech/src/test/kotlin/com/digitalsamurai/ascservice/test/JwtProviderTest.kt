@@ -1,6 +1,7 @@
 package com.digitalsamurai.ascservice.test
 
 import com.digitalsamurai.ascservice.mech.database.users.entity.JobLevel
+import com.digitalsamurai.ascservice.mech.database.users.tables.AllUserInfo
 import com.digitalsamurai.ascservice.mech.database.users.tables.User
 import com.digitalsamurai.ascservice.mech.jwt.JwtProvider
 import com.digitalsamurai.ascservice.mech.jwt.entity.JwtPayload
@@ -28,21 +29,21 @@ class JwtProviderTest {
 
     @Test
     fun test(){
-        val data = jwtProvider.createNewJwtKey(User{
-            this.username = "andrew"
-            this.job = JobLevel.WEB
-            this.inviter = "andrew"
-            this.isUseTgAlarm = false
-            this.team = "radiant"
-            this.canUseBohrium = false
-            this.canUseCarbonium = true
-            this.canUseKrypton = false
-            this.canUseOsmium = true
-            this.canUseSelenium = false
-            this.password = "awdawd"
-            this.tgId = "pudge"
-            this.tgTag = "rudje"
-        },"Iphone100")
+        val data = jwtProvider.createNewJwtKey(AllUserInfo(
+            username = "andrew",
+            job = JobLevel.WEB,
+            isUseTgAlarm = false,
+            team = "radiant",
+            canUseBohrium = false,
+            canUseCarbonium = true,
+            canUseKrypton = false,
+            canUseOsmium = true,
+            canUseSelenium = false,
+            password = "awdawd",
+            tgId = "pudge",
+            tgTag = "rudje",
+            inviter = "123"
+        ),"Iphone100")
         println(data)
 
         print("RT: "+rtProvider.createRtToken(data))

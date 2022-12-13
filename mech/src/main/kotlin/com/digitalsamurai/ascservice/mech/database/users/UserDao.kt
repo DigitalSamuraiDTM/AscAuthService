@@ -4,11 +4,12 @@ import com.digitalsamurai.ascservice.mech.database.entity.AscService
 import com.digitalsamurai.ascservice.mech.database.entity.SortingType
 import com.digitalsamurai.ascservice.mech.database.users.entity.JobLevel
 import com.digitalsamurai.ascservice.mech.database.users.entity.UserSortingField
+import com.digitalsamurai.ascservice.mech.database.users.tables.AllUserInfo
 import com.digitalsamurai.ascservice.mech.database.users.tables.User
 
 interface UserDao {
 
-    suspend fun getUser(username :String) : User?
+    suspend fun getAllUserInfo(username :String) : AllUserInfo?
 
     suspend fun getUsersByTeam(team : String) : List<User>
 

@@ -18,7 +18,6 @@ object Users : Table<User>("users"){
     val isUseTgAlarm = boolean("is_sub_tg_alarm").bindTo { it.isUseTgAlarm }
     val job = enum<JobLevel>("job").bindTo { it.job }
     val team = varchar("team").bindTo { it.team }
-    val inviter = varchar("inviter").bindTo { it.inviter }
 }
 
 interface User : Entity<User> {
@@ -35,5 +34,19 @@ interface User : Entity<User> {
     var canUseBohrium : Boolean
     var job : JobLevel
     var team : String
-    var inviter : String
 }
+data class AllUserInfo(
+    var username : String,
+    var password : String,
+    var tgId : String?,
+    var tgTag :String?,
+    var canUseOsmium :Boolean,
+    var canUseCarbonium :Boolean,
+    var canUseSelenium :Boolean,
+    var canUseKrypton :Boolean,
+    var isUseTgAlarm :Boolean,
+    var canUseBohrium : Boolean,
+    var job : JobLevel,
+    var team : String,
+    var inviter : String
+)

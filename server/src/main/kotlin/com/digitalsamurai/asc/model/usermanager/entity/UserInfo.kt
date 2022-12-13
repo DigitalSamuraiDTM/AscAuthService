@@ -1,6 +1,7 @@
 package com.digitalsamurai.asc.model.usermanager.entity
 
 import com.digitalsamurai.ascservice.mech.database.users.entity.JobLevel
+import com.digitalsamurai.ascservice.mech.database.users.tables.AllUserInfo
 import com.digitalsamurai.ascservice.mech.database.users.tables.User
 import com.google.gson.annotations.SerializedName
 
@@ -29,4 +30,4 @@ data class UserInfo (
     val kryptonAccess : Boolean,
         )
 
-fun User.toUserInfo() = UserInfo(username,tgTag,tgId,team,job,inviter,canUseSelenium,canUseCarbonium,canUseOsmium,canUseBohrium,canUseKrypton)
+fun AllUserInfo.toUserInfo() = UserInfo(username,tgTag,tgId,team,job,inviter,canUseSelenium,canUseCarbonium,canUseOsmium,canUseBohrium,canUseKrypton)

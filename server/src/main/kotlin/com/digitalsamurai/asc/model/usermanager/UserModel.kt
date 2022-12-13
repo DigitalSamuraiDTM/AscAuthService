@@ -1,8 +1,6 @@
 package com.digitalsamurai.asc.model.usermanager
 
-import com.digitalsamurai.asc.controller.entity.NetworkRegistrationUserInfo
-import com.digitalsamurai.asc.controller.entity.NetworkResponseRegistrationUser
-import com.digitalsamurai.asc.controller.entity.NetworkUpdatePassword
+import com.digitalsamurai.asc.controller.entity.*
 import com.digitalsamurai.asc.controller.entity.adminpanel.NetworkOkBodyResponse
 import com.digitalsamurai.asc.controller.entity.adminpanel.UsernameExistResponse
 import com.digitalsamurai.asc.model.usermanager.entity.BaseDataUser
@@ -11,10 +9,11 @@ import com.digitalsamurai.asc.model.usermanager.entity.toUserInfo
 import com.digitalsamurai.ascservice.mech.database.entity.AscService
 import com.digitalsamurai.ascservice.mech.database.entity.SortingType
 import com.digitalsamurai.ascservice.mech.database.teams.TeamDao
+import com.digitalsamurai.ascservice.mech.database.teams.tables.Team
 import com.digitalsamurai.ascservice.mech.database.users.UserDao
 import com.digitalsamurai.ascservice.mech.database.users.entity.JobLevel
 import com.digitalsamurai.ascservice.mech.database.users.entity.UserSortingField
-import com.digitalsamurai.ascservice.mech.database.users.tables.User
+import com.digitalsamurai.ascservice.mech.database.users.tables.AllUserInfo
 import com.digitalsamurai.ascservice.mech.jwt.entity.JwtPayload
 
 class UserModel(private val teamDao: TeamDao,private val userDao : UserDao) {
@@ -28,13 +27,13 @@ class UserModel(private val teamDao: TeamDao,private val userDao : UserDao) {
         JobLevel.ADMIN to listOf(JobLevel.WEB,JobLevel.AFFILIATE,JobLevel.TEAMLEAD,JobLevel.ARBITR_1W,JobLevel.ARBITR_1W,JobLevel.ADMIN)
     )
     
-    suspend fun getTeamsList() : List<String>{
-        return teamDao.getTeamsList()
+    suspend fun getTeamsList() : List<NetworkTeamInfo>{
+        return teamDao.getTeamsList().map { it.toNetworkTeam() }
     }
 
     suspend fun deleteUser(owner : String, username : String) : NetworkOkBodyResponse {
-        val userRequestOwner = userDao.getUser(owner)
-        val userRequestTarget = userDao.getUser(username)
+        val userRequestOwner = userDao.getAllUserInfo(owner)
+        val userRequestTarget = userDao.getAllUserInfo(username)
 
         return if (checkInternalUserEditAccess(userRequestOwner,userRequestTarget)){
             val dbResponse = userDao.deleteUser(username)
@@ -120,12 +119,12 @@ class UserModel(private val teamDao: TeamDao,private val userDao : UserDao) {
     }
 
     suspend fun getUserInfo(username : String) : UserInfo?{
-        return userDao.getUser(username)?.toUserInfo()
+        return userDao.getAllUserInfo(username)?.toUserInfo()
     }
 
     suspend fun unlinkUserTelegram(owner : String, username: String): Boolean {
-        val userRequestOwner = userDao.getUser(owner)
-        val userRequestTarget = userDao.getUser(username)
+        val userRequestOwner = userDao.getAllUserInfo(owner)
+        val userRequestTarget = userDao.getAllUserInfo(username)
         return if (checkInternalUserEditAccess(userRequestOwner,userRequestTarget)){
             userDao.unlinkTelegramAccount(username)
         } else{
@@ -142,8 +141,8 @@ class UserModel(private val teamDao: TeamDao,private val userDao : UserDao) {
         bohrium: Boolean,
         krypton: Boolean
     ): Boolean {
-        val userRequestOwner = userDao.getUser(owner)
-        val userRequestTarget = userDao.getUser(username)
+        val userRequestOwner = userDao.getAllUserInfo(owner)
+        val userRequestTarget = userDao.getAllUserInfo(username)
         return if (checkInternalUserEditAccess(userRequestOwner,userRequestTarget)){
             userDao.updateServiceAccess(username, selenium, carbonium, osmium, bohrium, krypton)
         } else{
@@ -152,10 +151,10 @@ class UserModel(private val teamDao: TeamDao,private val userDao : UserDao) {
     }
 
     suspend fun updateUserInviter(owner : String, username: String, inviter: String): Boolean {
-        val userRequestOwner = userDao.getUser(owner)
-        val userRequestTarget = userDao.getUser(username)
+        val userRequestOwner = userDao.getAllUserInfo(owner)
+        val userRequestTarget = userDao.getAllUserInfo(username)
         return if(checkInternalUserEditAccess(userRequestOwner,userRequestTarget)){
-            val userInviter = userDao.getUser(inviter)
+            val userInviter = userDao.getAllUserInfo(inviter)
             if (userInviter!=null){
                 userDao.updateInviter(username, inviter)
             } else{
@@ -167,8 +166,8 @@ class UserModel(private val teamDao: TeamDao,private val userDao : UserDao) {
     }
 
     suspend fun updateUserUsername(owner : String, username: String, newUsername: String): Boolean {
-        val userRequestOwner = userDao.getUser(owner)
-        val userRequestTarget = userDao.getUser(username)
+        val userRequestOwner = userDao.getAllUserInfo(owner)
+        val userRequestTarget = userDao.getAllUserInfo(username)
         return if (checkInternalUserEditAccess(userRequestOwner,userRequestTarget)){
             if(userDao.isUsernameExist(newUsername)){
                 false
@@ -181,10 +180,10 @@ class UserModel(private val teamDao: TeamDao,private val userDao : UserDao) {
     }
 
     suspend fun updateUserTeam(owner : String, username: String, team: String): Boolean {
-        val userRequestOwner = userDao.getUser(owner)
-        val userRequestTarget = userDao.getUser(username)
+        val userRequestOwner = userDao.getAllUserInfo(owner)
+        val userRequestTarget = userDao.getAllUserInfo(username)
         return if (checkInternalUserEditAccess(userRequestOwner,userRequestTarget)){
-            if (teamDao.getTeamsList().contains(team)){
+            if (teamDao.getTeamsList().map { it.teamName }.contains(team)){
                 userDao.updateTeam(username, team)
             } else{
                 false
@@ -195,8 +194,8 @@ class UserModel(private val teamDao: TeamDao,private val userDao : UserDao) {
     }
 
     suspend fun updateUserPassword(jwt: JwtPayload, info: NetworkUpdatePassword) : NetworkOkBodyResponse {
-        val targetUser = userDao.getUser(info.username)
-        val requestOwner = userDao.getUser(jwt.user)
+        val targetUser = userDao.getAllUserInfo(info.username)
+        val requestOwner = userDao.getAllUserInfo(jwt.user)
         return if (checkInternalUserEditAccess(requestOwner,targetUser)){
            val dbResponse =  userDao.updatePassword(info.username,info.newPassword)
             if (dbResponse){
@@ -217,8 +216,8 @@ class UserModel(private val teamDao: TeamDao,private val userDao : UserDao) {
 
     suspend fun updateUserJob(owner: String, username: String, job: String): NetworkOkBodyResponse {
         val jobLevel : JobLevel = JobLevel.fromString(job) ?: return NetworkOkBodyResponse(false,"Request unknown job level")
-        val targetUser = userDao.getUser(username)
-        val requestOwner = userDao.getUser(owner)
+        val targetUser = userDao.getAllUserInfo(username)
+        val requestOwner = userDao.getAllUserInfo(owner)
         return if (checkInternalUserEditAccess(target = targetUser,owner = requestOwner)){
             if (targetUser==requestOwner){
                 NetworkOkBodyResponse(false,"User cannot change his access")
@@ -240,10 +239,14 @@ class UserModel(private val teamDao: TeamDao,private val userDao : UserDao) {
         }
     }
 
+    suspend fun getAllTeamInfo(teamName: String): Any {
+
+    }
+
 }
 
 
-private fun checkInternalUserEditAccess(owner : User?, target : User?) : Boolean{
+private fun checkInternalUserEditAccess(owner : AllUserInfo?, target : AllUserInfo?) : Boolean{
     if (owner==null || target==null){
         return false
     }
