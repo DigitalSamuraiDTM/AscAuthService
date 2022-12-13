@@ -20,11 +20,11 @@ class JwtProviderTest {
 
     @BeforeEach
     fun before(){
-        rtProvider = RtProvider("cjX8BNJMoUKLZBo1VsZl29tPhB+c46eBRoml5z7rCU0=",File("C:\\Users\\Андрей\\Desktop\\conf.txt"))
+        rtProvider = RtProvider("cjX8BNJMoUKLZBo1VsZl29tPhB+c46eBRoml5z7rCU0=",File("C:\\Users\\andre\\Desktop\\conf.txt"))
         jwtProvider = JwtProvider(
             "cjX8BNJMoUKLZBo1VsZl29tPhB+c46eBRoml5z7rCU0=",
             Gson(),
-            File("C:\\Users\\Андрей\\Desktop\\conf.txt"))
+            File("C:\\Users\\andre\\Desktop\\conf.txt"))
     }
 
     @Test
@@ -53,8 +53,9 @@ class JwtProviderTest {
     }
     @Test
     fun checkEqual(){
-        val jwt = "eyJhbGciOiJKV1QiLCJ0eXAiOiJIUzI1NiJ9.eyJ1c2VyIjoiYW5kcmV3IiwiZGF0ZV9kZWF0aCI6IjA4LjExLjIwMjIgMDA6NTA6NTMiLCJkZXZpY2UiOiJJcGhvbmUxMDAiLCJGQUNTIjpmYWxzZSwiVFMiOmZhbHNlLCJNQUFTIjpmYWxzZSwiRE5TIjp0cnVlLCJQQUdTIjp0cnVlLCJhY2Nlc3MiOiJXRUIiLCJ0ZWFtIjoicmFkaWFudCJ9.KFJVgl1GbCRtyzMpIJyYl1a2cmrXz-JuIZ_LpL39zd4"
-        val rt = "vQOKCZJQMLz2XwJ9_Q1uSSUf80QWVCfYXlaDrU0mKso="
+//        val jwt = "eyJhbGciOiJKV1QiLCJ0eXAiOiJIUzI1NiJ9.eyJ1c2VyIjoiYW5kcmV3IiwiZGF0ZV9kZWF0aCI6IjExLjEyLjIwMjIgMTg6MjA6MTUiLCJkZXZpY2UiOiJhbmRyb2lkIDo6IEFuZHJvaWQgU0RLIGJ1aWx0IGZvciB4ODYgOjogMzAiLCJGQUNTIjp0cnVlLCJUUyI6dHJ1ZSwiTUFBUyI6dHJ1ZSwiRE5TIjp0cnVlLCJQQUdTIjp0cnVlLCJhY2Nlc3MiOiJBRE1JTiIsInRlYW0iOiJEZXZlbG9wZXJzIn0.-ApBAHyi6q3HAUQlpIGIJr0NDIHpzureS_nxYBKOAZM"
+        val jwt = "eyJhbGciOiJKV1QiLCJ0eXAiOiJIUzI1NiJ9.eyJ1c2VyIjoidXNlcjUiLCJkYXRlX2RlYXRoIjoiMTEuMTIuMjAyMiAxODoxMToxOCIsImRldmljZSI6ImFuZHJvaWQgOjogQW5kcm9pZCBTREsgYnVpbHQgZm9yIHg4NiA6OiAzMCIsIkZBQ1MiOnRydWUsIlRTIjpmYWxzZSwiTUFBUyI6ZmFsc2UsIkROUyI6dHJ1ZSwiUEFHUyI6dHJ1ZSwiYWNjZXNzIjoiVEVBTUxFQUQiLCJ0ZWFtIjoiQ1BBX01vc2NvdyJ9.HkxmgOGFYOCYD3flmU_Bks2euxacQw4yQlCMqVvnbYI"
+        val rt = "7NzJifsC37GP3CkKDixV3MoW6Z0RoGmK10xOACKbGCM="
         val new = rtProvider.isJwtBelongRt(jwt,rt)
         println(new)
         assert(new)

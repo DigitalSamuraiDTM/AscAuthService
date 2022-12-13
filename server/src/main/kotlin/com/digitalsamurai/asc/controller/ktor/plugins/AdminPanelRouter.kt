@@ -49,7 +49,12 @@ fun Application.configureAdminPanelRouting(jwtProvider : JwtProvider,userModel :
                 if (teamName==null){
                     call.respond(HttpStatusCode.BadRequest)
                 } else{
-                    call.respond(userModel.getAllTeamInfo(teamName))
+                    val data = userModel.getAllTeamInfo(teamName)
+                    if (data!=null){
+                        call.respond(data)
+                    } else{
+                        call.respond(HttpStatusCode.BadRequest)
+                    }
                 }
             }
         }

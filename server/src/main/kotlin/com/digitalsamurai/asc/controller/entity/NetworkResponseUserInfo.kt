@@ -1,6 +1,7 @@
 package com.digitalsamurai.asc.controller.entity
 
 import com.digitalsamurai.ascservice.mech.database.users.entity.JobLevel
+import com.digitalsamurai.ascservice.mech.database.users.tables.User
 import com.google.gson.annotations.SerializedName
 
 data class NetworkResponseUserInfo(

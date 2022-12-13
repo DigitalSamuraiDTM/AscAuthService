@@ -1,6 +1,9 @@
-package com.digitalsamurai.asc.di
+package com.digitalsamurai.ascservice.di
 
 import com.digitalsamurai.ascservice.mech.database.DatabaseImpl
+import com.digitalsamurai.ascservice.mech.database.access.AppAccessDao
+import com.digitalsamurai.ascservice.mech.database.access.AppAccessDaoImpl
+import com.digitalsamurai.ascservice.mech.database.access.tables.AppAccesses
 import com.digitalsamurai.ascservice.mech.database.rt.RtDao
 import com.digitalsamurai.ascservice.mech.database.rt.RtDaoImpl
 import com.digitalsamurai.ascservice.mech.database.teams.TeamDao
@@ -46,6 +49,12 @@ class DatabaseModule(val databaseUrl : String,
     fun provideTeamsDao(database: Database) : TeamDao {
         return TeamDaoImpl(database)
     }
+
+    @Provides
+    @Singleton
+    fun provideAppAccessDao(database: Database) : AppAccessDao {
+        return AppAccessDaoImpl(database)
+    }
     @Provides
     @Singleton
     fun provideRtDao(database: Database) : RtDao {
@@ -57,8 +66,9 @@ class DatabaseModule(val databaseUrl : String,
     @Singleton
     fun provideDatabaseImpl(userDao : UserDao,
                             teamDao: TeamDao,
-                            rtDao : RtDao
+                            rtDao : RtDao,
+                            appAccessDao : AppAccessDao
     ) : DatabaseImpl {
-        return DatabaseImpl(userDao, teamDao,rtDao)
+        return DatabaseImpl(userDao, teamDao,rtDao,appAccessDao)
     }
 }

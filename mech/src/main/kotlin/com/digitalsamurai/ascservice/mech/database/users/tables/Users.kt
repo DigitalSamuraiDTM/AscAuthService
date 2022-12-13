@@ -2,6 +2,7 @@ package com.digitalsamurai.ascservice.mech.database.users.tables
 
 
 import com.digitalsamurai.ascservice.mech.database.users.entity.JobLevel
+import com.google.gson.annotations.SerializedName
 import org.ktorm.entity.Entity
 import org.ktorm.schema.*
 
@@ -34,6 +35,7 @@ interface User : Entity<User> {
     var canUseBohrium : Boolean
     var job : JobLevel
     var team : String
+
 }
 data class AllUserInfo(
     var username : String,

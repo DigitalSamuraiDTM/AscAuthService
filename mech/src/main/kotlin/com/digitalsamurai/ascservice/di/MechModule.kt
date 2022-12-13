@@ -1,6 +1,5 @@
 package com.digitalsamurai.ascservice.di
 
-import com.digitalsamurai.asc.di.DatabaseModule
 import com.digitalsamurai.ascservice.mech.jwt.JwtProvider
 import com.digitalsamurai.ascservice.mech.rt.RtProvider
 import com.google.gson.Gson

@@ -8,6 +8,7 @@ import com.digitalsamurai.asc.model.appupdatemanager.fileprovider.FileProvider
 import com.digitalsamurai.asc.model.auth.AuthModel
 import com.digitalsamurai.asc.model.serviceinfo.ServiceModel
 import com.digitalsamurai.asc.model.usermanager.UserModel
+import com.digitalsamurai.ascservice.mech.database.access.AppAccessDao
 import com.digitalsamurai.ascservice.mech.database.rt.RtDao
 import com.digitalsamurai.ascservice.mech.database.teams.TeamDao
 import com.digitalsamurai.ascservice.mech.database.users.UserDao
@@ -41,8 +42,9 @@ class MainModule(private val jsonInfoActualVersion : String,
     @Provides
     @Singleton
     fun provideUserModel(teamDao : TeamDao,
-                         userDao : UserDao) : UserModel {
-        return UserModel(teamDao,userDao)
+                         userDao : UserDao,
+                        appAccessDao : AppAccessDao) : UserModel {
+        return UserModel(teamDao,userDao, appAccessDao)
     }
 
     @Provides

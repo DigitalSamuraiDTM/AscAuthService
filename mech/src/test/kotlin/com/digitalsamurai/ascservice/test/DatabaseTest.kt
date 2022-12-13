@@ -1,3 +1,5 @@
+import com.digitalsamurai.ascservice.mech.database.access.AppAccessDao
+import com.digitalsamurai.ascservice.mech.database.access.AppAccessDaoImpl
 import com.digitalsamurai.ascservice.mech.database.teams.TeamDao
 import com.digitalsamurai.ascservice.mech.database.teams.TeamDaoImpl
 import com.digitalsamurai.ascservice.mech.database.users.UserDaoImpl
@@ -13,12 +15,40 @@ class DatabaseTest {
 
     private lateinit var database : UserDaoImpl
     private lateinit var databaseTeam : TeamDaoImpl
+    private lateinit var databaseAccess : AppAccessDao
 
     @BeforeEach
     fun before(){
         val d = Database.connect(url = "jdbc:mysql://127.0.0.1:3306/ascdb",user ="root",password = "123456")
         database = UserDaoImpl(d, PasswordEncryptor())
         databaseTeam = TeamDaoImpl(d)
+        databaseAccess =AppAccessDaoImpl(d)
+    }
+
+
+    @Test
+    fun testCounter() = runBlocking{
+        val start = System.currentTimeMillis()
+        val list  =databaseTeam.getCountNamingsByTeam("Devs")
+        val list2  =databaseTeam.getCountApkByTeam("Devs")
+        val list3  =databaseTeam.getCountApkInstallsByTeam("RS")
+        val list4  =databaseTeam.getCountSharedCabinetsByTeam("CPA_Spb")
+        val list5  =databaseTeam.getCountSharingRequest("CPA_Spb")
+        val end = System.currentTimeMillis()
+        println("REQUEST TIME :${end-start}")
+        println("NAMINGS :${list}")
+        println("APKS :${list2}")
+        println("APK INSTALLS :${list3}")
+        println("CABINETS :${list4}")
+        println("SHAR REQUEST :${list5}")
+        assert(true)
+    }
+
+    @Test()
+    fun testAccess() = runBlocking {
+        val result = databaseAccess.getTeamAccess("Devs")
+        println(result)
+        assert(true)
     }
 
     @Test

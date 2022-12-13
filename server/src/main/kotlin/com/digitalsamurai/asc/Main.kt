@@ -2,12 +2,11 @@ package com.digitalsamurai.asc
 
 import com.digitalsamurai.asc.controller.ktor.KtorServer
 import com.digitalsamurai.asc.di.DaggerMainComponent
-import com.digitalsamurai.asc.di.DatabaseModule
+import com.digitalsamurai.ascservice.di.DatabaseModule
 import com.digitalsamurai.asc.di.MainComponent
 import com.digitalsamurai.asc.di.MainModule
 import com.digitalsamurai.ascservice.di.EncryptorsModule
 import com.digitalsamurai.ascservice.di.MechModule
-import org.ktorm.database.Database
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileNotFoundException
