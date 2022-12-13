@@ -4,6 +4,7 @@ import com.digitalsamurai.asc.controller.entity.NetworkRegistrationUserInfo
 import com.digitalsamurai.asc.controller.entity.NetworkUpdatePassword
 import com.digitalsamurai.asc.controller.entity.ServiceOkStatus
 import com.digitalsamurai.asc.controller.entity.adminpanel.NetworkOkBodyResponse
+import com.digitalsamurai.asc.controller.entity.auth.NetworkRequestBindTelegram
 import com.digitalsamurai.asc.controller.entity.auth.NetworkRequestLogin
 import com.digitalsamurai.asc.controller.entity.auth.NetworkUpdateTokenRequest
 import com.digitalsamurai.asc.controller.ktor.KtorServer
@@ -128,6 +129,12 @@ fun Application.configureAuthRouter(jwtProvider: JwtProvider,
             call.authValid(PUBLIC_PORT, jwtProvider, authEncryptor, gson, NetworkUpdatePassword::class) { call, info ->
                 val jwt = jwtProvider.getPayload(call.request.headers["jwt"]!!)
                 val response = userModel.updateUserPassword(jwt, info!!)
+                call.respond(authEncryptor.encryptAes(gson.toJson(response),info.key))
+            }
+        }
+        post("/bindTelegram"){
+            call.authValid(PUBLIC_PORT,null,authEncryptor,gson,NetworkRequestBindTelegram::class){call,info->
+                val response = userModel.bindTelegram(info!!)
                 call.respond(authEncryptor.encryptAes(gson.toJson(response),info.key))
             }
         }
