@@ -12,6 +12,7 @@ import com.digitalsamurai.ascservice.mech.database.access.AppAccessDao
 import com.digitalsamurai.ascservice.mech.database.entity.AscService
 import com.digitalsamurai.ascservice.mech.database.entity.SortingType
 import com.digitalsamurai.ascservice.mech.database.teams.TeamDao
+import com.digitalsamurai.ascservice.mech.database.teams.entity.InteractionsType
 import com.digitalsamurai.ascservice.mech.database.users.UserDao
 import com.digitalsamurai.ascservice.mech.database.users.entity.JobLevel
 import com.digitalsamurai.ascservice.mech.database.users.entity.UserSortingField
@@ -305,6 +306,29 @@ class UserModel(private val teamDao: TeamDao,
         } else {
             NetworkOkBodyResponse(false, "User not found")
         }
+    }
+
+    suspend fun updateTeamInteractionType(teamName: String, interactionsType: InteractionsType): Boolean {
+        val team = teamDao.getTeamInfo(teamName)
+        team?.let {
+            return teamDao.updateInteractionsType(teamName, interactionsType)
+        }
+        return false
+    }
+
+    suspend fun updateTeamName(teamName: String, newTeamName : String): Boolean {
+        val team = teamDao.getTeamInfo(teamName)
+        team?.let {
+            return teamDao.updateTeamName(teamName, newTeamName)
+        }
+        return false
+    }
+    suspend fun updateTeamNote(teamName: String, note : String): Boolean {
+        val team = teamDao.getTeamInfo(teamName)
+        team?.let {
+            return teamDao.updateTeamNote(teamName, note)
+        }
+        return false
     }
 
     private fun checkInternalUserEditAccess(owner: AllUserInfo?, target: AllUserInfo?): Boolean {

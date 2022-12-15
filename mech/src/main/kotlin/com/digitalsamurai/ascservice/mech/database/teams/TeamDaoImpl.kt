@@ -27,6 +27,7 @@ internal class TeamDaoImpl(private val database : Database) : TeamDao {
         }
     }
 
+
     override suspend fun getTeamsList(): List<Team> {
         return database.from(Teams).select().map { database.team.entityExtractor(it) }
     }
@@ -107,6 +108,39 @@ internal class TeamDaoImpl(private val database : Database) : TeamDao {
                         (database.from(Users).select(Users.username).where { Users.team eq teamName }) }.rowSet.size()
         } catch (e : Exception){
             -1
+        }
+    }
+
+    override suspend fun updateInteractionsType(teamName: String, interactionsType: InteractionsType): Boolean {
+        return try {
+            database.update(Teams) {
+                set(Teams.interactionsType, interactionsType)
+                where { Teams.teamName eq teamName }
+            } == 1
+        } catch (e : Exception){
+            false
+        }
+    }
+
+    override suspend fun updateTeamName(teamName: String, newTeamName: String): Boolean {
+        return try {
+            database.update(Teams) {
+                set(Teams.teamName, newTeamName)
+                where { Teams.teamName eq teamName }
+            } == 1
+        } catch (e : Exception){
+            false
+        }
+    }
+
+    override suspend fun updateTeamNote(teamName: String, note: String): Boolean {
+        return try {
+            database.update(Teams) {
+                set(Teams.note, note)
+                where { Teams.teamName eq teamName }
+            } == 1
+        } catch (e : Exception){
+            false
         }
     }
 }

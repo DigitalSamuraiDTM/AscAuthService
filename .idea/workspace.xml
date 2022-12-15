@@ -4,34 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c3b19108-31a1-4e75-a9db-e775715138f9" name="Changes" comment="bind telegram manually">
-      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/access/AppAccessDao.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/access/AppAccessDaoImpl.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/access/tables/AppAccesses.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/apks/tables/ApkRequests.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/apks/tables/OsmiumInstallations.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/entity/RequestStatus.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/entity/SourceRequest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/namings/tables/Namings.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/sharing/tables/SharingCabinets.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/sharing/tables/SharingRequests.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/entity/adminpanel/NetworkBaseUserInfo.kt" afterDir="false" />
+    <list default="true" id="c3b19108-31a1-4e75-a9db-e775715138f9" name="Changes" comment="team info">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/di/DatabaseModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/di/DatabaseModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/di/MechModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/di/MechModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/DatabaseImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/DatabaseImpl.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/teams/TeamDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/teams/TeamDao.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/teams/TeamDaoImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/teams/TeamDaoImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/tables/Users.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/users/tables/Users.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/test/kotlin/com/digitalsamurai/ascservice/test/DatabaseTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/test/kotlin/com/digitalsamurai/ascservice/test/DatabaseTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mech/src/test/kotlin/com/digitalsamurai/ascservice/test/JwtProviderTest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/test/kotlin/com/digitalsamurai/ascservice/test/JwtProviderTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/Main.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/entity/NetworkAllTeamInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/entity/NetworkAllTeamInfo.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/entity/NetworkResponseUserInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/entity/NetworkResponseUserInfo.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/teams/entity/InteractionsType.kt" beforeDir="false" afterPath="$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/teams/entity/InteractionsType.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/KtorServer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/KtorServer.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/di/MainModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/di/MainModule.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/model/usermanager/UserModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -85,15 +64,16 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;14&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/work/IDEA_project/MobileAppService&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "jdk.selected.JAVA_MODULE": "14",
+    "last_opened_file_path": "D:/work/IDEA_project/MobileAppService",
+    "run.code.analysis.last.selected.profile": "pProject Default"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\work\IDEA_project\ktorTestApi\src\main\kotlin\com\digitalsamurai\asc\model\database" />
@@ -387,29 +367,30 @@
     <MESSAGE value="fix update password command" />
     <MESSAGE value="rsa fixes, network fixes" />
     <MESSAGE value="auth fixes" />
-    <option name="LAST_COMMIT_MESSAGE" value="auth fixes" />
+    <MESSAGE value="team info" />
+    <option name="LAST_COMMIT_MESSAGE" value="team info" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt</url>
-          <line>148</line>
+          <line>143</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt</url>
-          <line>150</line>
+          <line>145</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt</url>
-          <line>153</line>
+          <line>148</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AdminPanelRouter.kt</url>
-          <line>152</line>
+          <line>147</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
@@ -419,7 +400,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/server/src/main/kotlin/com/digitalsamurai/asc/controller/ktor/plugins/AuthRouter.kt</url>
-          <line>96</line>
+          <line>97</line>
           <option name="timeStamp" value="101" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
@@ -502,31 +483,11 @@
           <line>265</line>
           <option name="timeStamp" value="179" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/teams/TeamDaoImpl.kt</url>
-          <line>85</line>
-          <option name="timeStamp" value="228" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/teams/TeamDaoImpl.kt</url>
-          <line>84</line>
-          <option name="timeStamp" value="229" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/teams/TeamDaoImpl.kt</url>
-          <line>83</line>
-          <option name="timeStamp" value="230" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/mech/src/main/kotlin/com/digitalsamurai/ascservice/mech/database/teams/TeamDaoImpl.kt</url>
-          <line>86</line>
-          <option name="timeStamp" value="231" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/AscAuthService$TestEncryptors_testAuth.ic" NAME="TestEncryptors.testAuth Coverage Results" MODIFIED="1667846761518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/AscAuthService$MainKt.ic" NAME="MainKt Coverage Results" MODIFIED="1667852359748" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/AscAuthService$TestEncryptors_testAuth.ic" NAME="TestEncryptors.testAuth Coverage Results" MODIFIED="1667846761518" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

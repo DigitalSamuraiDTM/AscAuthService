@@ -3,10 +3,10 @@ package com.digitalsamurai.asc.controller.ktor.plugins
 import com.digitalsamurai.asc.controller.entity.NetworkTeamInfo
 import com.digitalsamurai.asc.controller.entity.adminpanel.NetworkOkBodyResponse
 import com.digitalsamurai.asc.controller.ktor.KtorServer
-import com.digitalsamurai.asc.controller.ktor.KtorServer.Companion.authValid
 import com.digitalsamurai.asc.controller.ktor.KtorServer.Companion.checkJwtValid
 import com.digitalsamurai.asc.model.usermanager.UserModel
 import com.digitalsamurai.ascservice.mech.database.entity.SortingType
+import com.digitalsamurai.ascservice.mech.database.teams.entity.InteractionsType
 import com.digitalsamurai.ascservice.mech.database.users.entity.JobLevel
 import com.digitalsamurai.ascservice.mech.database.users.entity.UserSortingField
 import com.digitalsamurai.ascservice.mech.jwt.JwtProvider
@@ -15,7 +15,6 @@ import io.ktor.http.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import kotlinx.coroutines.Job
 
 fun Application.configureAdminPanelRouting(jwtProvider : JwtProvider,userModel :UserModel) {
     val PUBLIC_PORT = KtorServer.PUBLIC_ASC_PORT
@@ -25,7 +24,7 @@ fun Application.configureAdminPanelRouting(jwtProvider : JwtProvider,userModel :
 
         get("/isUsernameAvailable") {
             call.checkJwtValid(port = PUBLIC_PORT, jwtProvider = jwtProvider) {
-                val username = call.request.queryParameters.get("username")
+                val username = call.request.queryParameters["username"]
                 if (username == null) {
                     call.respond(HttpStatusCode.BadRequest)
                     return@get
@@ -110,12 +109,12 @@ fun Application.configureAdminPanelRouting(jwtProvider : JwtProvider,userModel :
 
         /**
          * Params:
-         * @param current : Int - current page pos
-         * @param pageSize : Int - next page size
-         * @param SortingUsers : Enum - sorting field type
-         * @param SortingUsersType : Enum - sorting type (asc,desc)
+         * @param[current] : Int - current page pos
+         * @param[pageSize] : Int - next page size
+         * @param[SortingUsers] : Enum - sorting field type
+         * @param[SortingUsersType] : Enum - sorting type (asc,desc)
          *
-         * Returned data:
+         * @return data:
          * [username] : String
          * [tg_tag] : String
          * [tg_id] : String
@@ -125,11 +124,11 @@ fun Application.configureAdminPanelRouting(jwtProvider : JwtProvider,userModel :
 
         get("/pagingMainUsersInfo") {
             call.checkJwtValid(JobLevel.ADMIN, port = PUBLIC_PORT, jwtProvider = jwtProvider) {
-                val text = call.request.queryParameters.get("text") ?: ""
-                val current = call.request.queryParameters.get("current")?.toInt() ?: 0
-                val pageSize = call.request.queryParameters.get("pageSize")?.toInt() ?: 10
-                val SortingUsers = call.request.queryParameters.get("SortingUsers")?.toInt() ?: 0
-                val SortingUsersType = call.request.queryParameters.get("SortingUsersType")?.toInt() ?: 0
+                val text = call.request.queryParameters["text"] ?: ""
+                val current = call.request.queryParameters["current"]?.toInt() ?: 0
+                val pageSize = call.request.queryParameters["pageSize"]?.toInt() ?: 10
+                val SortingUsers = call.request.queryParameters["SortingUsers"]?.toInt() ?: 0
+                val SortingUsersType = call.request.queryParameters["SortingUsersType"]?.toInt() ?: 0
                 val data = userModel.pageData(
                     text,
                     current,
@@ -154,7 +153,7 @@ fun Application.configureAdminPanelRouting(jwtProvider : JwtProvider,userModel :
          * */
         get("/getUserInfo") {
             call.checkJwtValid(JobLevel.ADMIN, JobLevel.TEAMLEAD, port = PUBLIC_PORT, jwtProvider = jwtProvider) {
-                val username = call.request.queryParameters.get("username")
+                val username = call.request.queryParameters["username"]
                 username?.let {
                     val data = userModel.getUserInfo(username)
                     call.respond(data ?: "")
@@ -166,8 +165,8 @@ fun Application.configureAdminPanelRouting(jwtProvider : JwtProvider,userModel :
         }
         delete("/deleteUser") {
             call.checkJwtValid(JobLevel.ADMIN, JobLevel.TEAMLEAD, port = PUBLIC_PORT, jwtProvider = jwtProvider) {
-                val username = call.request.queryParameters.get("username")
-                val owner = call.request.queryParameters.get("owner")
+                val username = call.request.queryParameters["username"]
+                val owner = call.request.queryParameters["owner"]
                 username?.let {
                     if (owner!=null){
                         val response = userModel.deleteUser(owner,username)
@@ -185,9 +184,85 @@ fun Application.configureAdminPanelRouting(jwtProvider : JwtProvider,userModel :
 
 
         /**
-         * Update user data
-         * Need for settings, admin panel and teamlead panel
+         * Update interactions type in database
+         * @param[team_name]
+         * @param[interactions_type]
          *
+         * Only for [ADMIN]
+         * */
+
+        put("/updateTeamInteractionType"){
+            call.checkJwtValid(JobLevel.ADMIN, port = PUBLIC_PORT, jwtProvider = jwtProvider) {
+                val teamName = call.request.queryParameters["team_name"]
+                val interactionsType = InteractionsType.fromString(call.request.queryParameters["interactions_type"])
+                if (teamName==null || interactionsType==null) {
+                    call.respond(HttpStatusCode.BadRequest)
+                } else {
+                    val response = userModel.updateTeamInteractionType(teamName,interactionsType)
+                    if (response){
+                        call.respond(NetworkOkBodyResponse(true))
+                    } else{
+                        call.respond(NetworkOkBodyResponse(false,"Internal server error"))
+                    }
+                }
+            }
+        }
+
+        /**
+         * Update team name in database
+         * @param[team_name]
+         * @param[new_team_name]
+         *
+         * Only for [ADMIN]
+         * */
+
+        put("/updateTeamName"){
+            call.checkJwtValid(JobLevel.ADMIN, port = PUBLIC_PORT, jwtProvider = jwtProvider) {
+                val teamName = call.request.queryParameters["team_name"]
+                val newTeamName = call.request.queryParameters["new_team_name"]
+                if (teamName==null || newTeamName==null) {
+                    call.respond(HttpStatusCode.BadRequest)
+                } else {
+                    val response = userModel.updateTeamName(teamName,newTeamName)
+                    if (response){
+                        call.respond(NetworkOkBodyResponse(true))
+                    } else{
+                        call.respond(NetworkOkBodyResponse(false,"Internal server error"))
+                    }
+                }
+            }
+        }
+
+        /**
+         * Update team name in database
+         * @param[team_name]
+         * @param[note]
+         *
+         * Only for [ADMIN]
+         * */
+
+        put("/updateTeamName"){
+            call.checkJwtValid(JobLevel.ADMIN, port = PUBLIC_PORT, jwtProvider = jwtProvider) {
+                val teamName = call.request.queryParameters["team_name"]
+                val note = call.request.queryParameters["note"]
+                if (teamName==null || note==null) {
+                    call.respond(HttpStatusCode.BadRequest)
+                } else {
+                    val response = userModel.updateTeamNote(teamName,note)
+                    if (response){
+                        call.respond(NetworkOkBodyResponse(true))
+                    } else{
+                        call.respond(NetworkOkBodyResponse(false,"Internal server error"))
+                    }
+                }
+            }
+        }
+
+
+
+        /**
+         * Update user data
+         * Need for settings, admin panel and <my team>
          *
          * */
 
@@ -277,17 +352,17 @@ fun Application.configureAdminPanelRouting(jwtProvider : JwtProvider,userModel :
 
         put("/updateServiceAccess") {
             call.checkJwtValid(JobLevel.ADMIN, JobLevel.TEAMLEAD, port = PUBLIC_PORT, jwtProvider = jwtProvider) {
-                val owner = call.request.queryParameters.get("owner")
-                val username = call.request.queryParameters.get("username")
-                val selenium = call.request.queryParameters.get("seleniumAccess").toBoolean() ?: false
-                val carbonium = call.request.queryParameters.get("carboniumAccess").toBoolean() ?: false
-                val osmium = call.request.queryParameters.get("osmiumAccess").toBoolean() ?: false
-                val bohrium = call.request.queryParameters.get("bohriumAccess").toBoolean() ?: false
-                val krypton = call.request.queryParameters.get("kryptonAccess").toBoolean() ?: false
+                val owner = call.request.queryParameters["owner"]
+                val username = call.request.queryParameters["username"]
+                val selenium = call.request.queryParameters["seleniumAccess"].toBoolean()
+                val carbonium = call.request.queryParameters["carboniumAccess"].toBoolean()
+                val osmium = call.request.queryParameters["osmiumAccess"].toBoolean()
+                val bohrium = call.request.queryParameters["bohriumAccess"].toBoolean()
+                val krypton = call.request.queryParameters["kryptonAccess"].toBoolean()
                 if (!(username == null || owner == null)) {
 
                     val response =
-                            userModel.updateUserServiceAccess(owner = owner!!,username = username, selenium, carbonium, osmium, bohrium, krypton)
+                            userModel.updateUserServiceAccess(owner = owner,username = username, selenium, carbonium, osmium, bohrium, krypton)
                     if (response){
                         call.respond(NetworkOkBodyResponse(true))
                     } else{

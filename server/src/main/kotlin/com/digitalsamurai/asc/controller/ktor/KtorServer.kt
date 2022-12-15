@@ -28,7 +28,7 @@ import java.util.*
 import javax.inject.Inject
 import kotlin.reflect.KClass
 
-class KtorServer() : Thread() {
+class KtorServer : Thread() {
 
     companion object{
         const val PRIVATE_ASC_PORT = 25640

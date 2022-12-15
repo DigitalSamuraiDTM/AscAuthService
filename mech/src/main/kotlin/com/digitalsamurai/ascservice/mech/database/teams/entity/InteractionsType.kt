@@ -10,5 +10,17 @@ enum class InteractionsType {
     @SerializedName("INHOUSE")
     INHOUSE,
     @SerializedName("OTHER")
-    OTHER
+    OTHER;
+
+    companion object{
+        fun fromString(string : String?) : InteractionsType?{
+            return when(string){
+                "CPA"->CPA
+                "RS"->RS
+                "INHOUSE"->INHOUSE
+                "OTHER"->OTHER
+                else->{null}
+            }
+        }
+    }
 }
