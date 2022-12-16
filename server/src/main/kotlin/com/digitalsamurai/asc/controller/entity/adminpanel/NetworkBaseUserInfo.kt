@@ -7,9 +7,13 @@ import com.google.gson.annotations.SerializedName
 data class NetworkBaseUserInfo(
     @SerializedName("username")
     var username : String,
-    @SerializedName("tg")
+    @SerializedName("tg_id")
     var tgId : String?,
+    @SerializedName("tg_tag")
     var tgTag : String?,
-    var job : JobLevel
+    @SerializedName("job")
+    var job : JobLevel,
+    @SerializedName("team")
+    val teamName : String
 )
-fun User.toBaseUserInfo() = NetworkBaseUserInfo(username, tgId, tgTag, job)
+fun User.toBaseUserInfo() = NetworkBaseUserInfo(username, tgId, tgTag, job,team)

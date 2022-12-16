@@ -7,7 +7,7 @@ interface TeamDao {
 
     suspend fun getTeamsList() : List<Team>
 
-    suspend fun insertTeam(teamName : String, interactionsType: InteractionsType, note : String) : Boolean
+    suspend fun insertTeam(teamName : String, interactionsType: InteractionsType, note : String?) : Boolean
 
     suspend fun getCountApkByTeam(teamName : String) : Int
 
@@ -26,4 +26,5 @@ interface TeamDao {
     suspend fun updateTeamName(teamName: String, newTeamName : String): Boolean
 
     suspend fun updateTeamNote(teamName: String, note : String): Boolean
+    suspend fun deleteTeam(teamName: String): Boolean
 }

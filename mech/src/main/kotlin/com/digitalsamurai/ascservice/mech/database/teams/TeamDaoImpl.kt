@@ -32,7 +32,7 @@ internal class TeamDaoImpl(private val database : Database) : TeamDao {
         return database.from(Teams).select().map { database.team.entityExtractor(it) }
     }
 
-    override suspend fun insertTeam(teamName: String, interactionsType: InteractionsType, note: String): Boolean {
+    override suspend fun insertTeam(teamName: String, interactionsType: InteractionsType, note: String?): Boolean {
         return database.insert(Teams){
             set(Teams.teamName,teamName)
             set(Teams.interactionsType,interactionsType)
@@ -127,6 +127,16 @@ internal class TeamDaoImpl(private val database : Database) : TeamDao {
             database.update(Teams) {
                 set(Teams.teamName, newTeamName)
                 where { Teams.teamName eq teamName }
+            } == 1
+        } catch (e : Exception){
+            false
+        }
+    }
+
+    override suspend fun deleteTeam(teamName: String): Boolean {
+        return try {
+            database.delete(Teams){
+                it.teamName eq teamName
             } == 1
         } catch (e : Exception){
             false

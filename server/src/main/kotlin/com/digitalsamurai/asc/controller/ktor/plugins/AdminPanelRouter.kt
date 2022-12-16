@@ -1,6 +1,7 @@
 package com.digitalsamurai.asc.controller.ktor.plugins
 
 import com.digitalsamurai.asc.controller.entity.NetworkTeamInfo
+import com.digitalsamurai.asc.controller.entity.adminpanel.NetworkCreateTeamData
 import com.digitalsamurai.asc.controller.entity.adminpanel.NetworkOkBodyResponse
 import com.digitalsamurai.asc.controller.ktor.KtorServer
 import com.digitalsamurai.asc.controller.ktor.KtorServer.Companion.checkJwtValid
@@ -35,6 +36,27 @@ fun Application.configureAdminPanelRouting(jwtProvider : JwtProvider,userModel :
         }
 
 
+
+
+        delete("/deleteTeam") {
+            call.checkJwtValid(JobLevel.ADMIN, port = PUBLIC_PORT, jwtProvider = jwtProvider) {
+                val teamName = call.parameters["team_name"]
+                if (teamName!=null){
+                    val data = userModel.deleteTeam(teamName)
+
+                    call.respond(data)
+                } else{
+
+                }
+            }
+        }
+        post("/registerTeam") {
+            call.checkJwtValid(JobLevel.ADMIN, port = PUBLIC_PORT, jwtProvider = jwtProvider) {
+                val body = call.receive<NetworkCreateTeamData>()
+                val data = userModel.createTeam(body)
+                call.respond(data)
+            }
+        }
 
         /**
          * All team info

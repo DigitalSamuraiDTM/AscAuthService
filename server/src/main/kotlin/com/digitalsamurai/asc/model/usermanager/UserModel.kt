@@ -1,6 +1,7 @@
 package com.digitalsamurai.asc.model.usermanager
 
 import com.digitalsamurai.asc.controller.entity.*
+import com.digitalsamurai.asc.controller.entity.adminpanel.NetworkCreateTeamData
 import com.digitalsamurai.asc.controller.entity.adminpanel.NetworkOkBodyResponse
 import com.digitalsamurai.asc.controller.entity.adminpanel.UsernameExistResponse
 import com.digitalsamurai.asc.controller.entity.adminpanel.toBaseUserInfo
@@ -279,7 +280,7 @@ class UserModel(private val teamDao: TeamDao,
         val mainTeamInfo = teamDao.getTeamInfo(teamName)
         val users = userDao.getUsersByTeam(teamName).map { it.toBaseUserInfo() }
         return if (mainTeamInfo!=null){
-            NetworkAllTeamInfo(
+             NetworkAllTeamInfo(
                 teamName =teamName,
                 interactionsType = mainTeamInfo.interactionsType,
                 note = mainTeamInfo.note,
@@ -338,5 +339,21 @@ class UserModel(private val teamDao: TeamDao,
         return owner.username == target.username ||
                 owner.job == JobLevel.TEAMLEAD && owner.team == target.team ||
                 owner.job == JobLevel.ADMIN
+    }
+
+    suspend fun createTeam(body: NetworkCreateTeamData): NetworkOkBodyResponse {
+        return if (teamDao.insertTeam(body.teamName,body.interactionType,body.note)){
+            NetworkOkBodyResponse(true,null)
+        } else{
+            NetworkOkBodyResponse(false,"Database request error")
+        }
+    }
+
+    suspend fun deleteTeam(teamName: String): NetworkOkBodyResponse {
+        return if (teamDao.deleteTeam(teamName)){
+            NetworkOkBodyResponse(true,null)
+        } else{
+            NetworkOkBodyResponse(false,"Database request error")
+        }
     }
 }
